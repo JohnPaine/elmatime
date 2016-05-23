@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Hello">Hello World, Click Me!</string>
+    <string name="ApplicationName">ImpeltechTime.Droid</string>
+    <string name="Login">Login</string>
+    <string name="LoginHint">Enter login</string>
+    <string name="Password">Password</string>
+    <string name="PasswordHint">Enter password</string>
+</resources>

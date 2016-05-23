@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="81dp"
+    android:background="#f7f9cc"
+    android:orientation="horizontal">
+    <Button
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:id="@+id/taskLoggingStateButton"
+        android:background="@android:drawable/ic_media_play"
+        style="@android:style/Widget.Material.Light.Button.Borderless"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp" />
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fullContentLayout"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp">
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:id="@+id/contentLayout"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="false"
+            android:layout_toLeftOf="@+id/unaccountedTimeLayout">
+            <TextView
+                android:id="@+id/taskSubjectTextView"
+                android:layout_width="200dp"
+                android:textSize="18sp"
+                android:layout_height="wrap_content"
+                android:textColor="#212121"
+                android:textStyle="bold"
+                android:gravity="left"
+                android:text="Subject"
+                android:layout_gravity="top"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="false" />
+            <TextView
+                android:id="@+id/tillDateTextView"
+                android:layout_width="200dp"
+                android:textSize="15sp"
+                android:layout_height="wrap_content"
+                android:textColor="#383737"
+                android:gravity="left"
+                android:text="Till 06.06.2016"
+                android:layout_gravity="bottom"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentStart="false"
+                android:layout_below="@+id/taskSubjectTextView" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15 hours remaining"
+                android:id="@+id/remainingTimeTextView"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentStart="false"
+                android:layout_below="@+id/tillDateTextView"
+                android:textColor="#383737"
+                android:textStyle="normal"
+                android:textSize="15sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:id="@+id/unaccountedTimeLayout"
+            android:layout_centerVertical="true"
+            android:visibility="visible"
+            android:layout_toLeftOf="@+id/sendWorklogButton"
+            android:layout_marginRight="10dp">
+            <TextView
+                android:id="@+id/unaccountedWorkTimeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="false"
+                android:textColor="#212121"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:text="3"
+                android:layout_alignWithParentIfMissing="false"
+                android:layout_alignParentBottom="false"
+                android:layout_alignParentLeft="false"
+                android:layout_toRightOf="@+id/contentLayout"
+                android:layout_centerHorizontal="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="unaccounted"
+                android:id="@+id/unaccountedTextView"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/unaccountedWorkTimeTextView"
+                android:textSize="13sp"
+                android:textColor="#616161" />
+        </RelativeLayout>
+        <Button
+            style="@android:style/Widget.DeviceDefault.Button.Borderless.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/sendWorklogButton"
+            android:layout_alignParentEnd="true"
+            android:background="@android:drawable/ic_menu_send"
+            android:backgroundTint="#f57f17"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:enabled="false" />
+    </RelativeLayout>
+</LinearLayout>
