@@ -22,6 +22,8 @@ namespace ImpeltechTime.Droid.Adapters
         private TextView _tillDateTextView;
         private TextView _unaccountedWorkTimeTextView;
 
+        private RelativeLayout _unaccountedLayout;
+
         public TaskAdapter (Activity context, DateTime date, IElmaTaskProvider taskProvider) {
             _context = context;
             _taskProvider = taskProvider;
@@ -43,6 +45,7 @@ namespace ImpeltechTime.Droid.Adapters
             _remainingTimeTextView = convertView.FindViewById<TextView> (Resource.Id.remainingTimeTextView);
             _unaccountedWorkTimeTextView = convertView.FindViewById<TextView> (Resource.Id.unaccountedWorkTimeTextView);
             _taskLoggingStateButton = convertView.FindViewById<Button> (Resource.Id.taskLoggingStateButton);
+            _unaccountedLayout = convertView.FindViewById<RelativeLayout> (Resource.Id.unaccountedTimeLayout);
         }
 
         public override View GetView (int position, View convertView, ViewGroup parent) {
@@ -76,8 +79,13 @@ namespace ImpeltechTime.Droid.Adapters
             else
                 _remainingTimeTextView.Visibility = ViewStates.Invisible;
 
-            if (task.UnaccountedWorkTime?.TotalSeconds != null)
+            // TODO: replace seconds with hours and minutes
+            if (task.UnaccountedWorkTime?.TotalSeconds != null) {
+                _unaccountedLayout.Visibility = ViewStates.Visible;
                 _unaccountedWorkTimeTextView.Text = ((int) task.UnaccountedWorkTime?.TotalSeconds).ToString ();
+            }
+            else
+                _unaccountedLayout.Visibility = ViewStates.Invisible;
             _taskLoggingStateButton.SetBackgroundResource (image);
 
             if (init) {

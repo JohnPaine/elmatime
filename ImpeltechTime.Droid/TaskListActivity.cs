@@ -25,8 +25,9 @@ namespace ImpeltechTime.Droid
         private DateTime _currentDate;
         private TextView _currentDateTextView;
         private Button _nextDateButton;
-        private TextView _plannedWorklogTextView;
         private Button _previousDateButton;
+        private Button _menuButton;
+        private TextView _plannedWorklogTextView;
         private TextView _sentWorklogTextView;
         private ListView _tasksListView;
         private TaskTimer _timer;
@@ -92,6 +93,25 @@ namespace ImpeltechTime.Droid
             _tasksListView = FindViewById<ListView> (Resource.Id.tasksListView);
             _previousDateButton = FindViewById<Button> (Resource.Id.previousDateButton);
             _nextDateButton = FindViewById<Button> (Resource.Id.nextDateButton);
+            _menuButton = FindViewById<Button> (Resource.Id.menuButton);
+            _menuButton.Click += (s, arg) => {
+                var menu = new PopupMenu (this, _menuButton);
+
+                menu.Inflate (Resource.Layout.main_menu);
+
+                menu.MenuItemClick += (s1, arg1) => {
+                    // TODO: replace hardcoded text checking with Id checking!!!
+                    if (arg1.Item.TitleFormatted.ToString () == "Logout") {
+                        Log.Error("TaskListActivity", "Logging out!");
+                        var intent = new Intent(this, typeof(LoginActivity));
+                        intent.PutExtra("user_invalid", true);
+                        StartActivity(intent);
+                        Finish();
+                    }
+                };
+
+                menu.Show ();
+            };
             _chronometer = FindViewById<Chronometer> (Resource.Id.timerChronometer);
             _currentDateTextView = FindViewById<TextView> (Resource.Id.currentDateTextView);
             _plannedWorklogTextView = FindViewById<TextView> (Resource.Id.plannedWorklogTextView);
