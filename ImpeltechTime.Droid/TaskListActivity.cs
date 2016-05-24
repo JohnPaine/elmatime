@@ -7,6 +7,7 @@ using System.Timers;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Util;
 using Android.Widget;
 using ImpeltechTime.Droid.Adapters;
 using ImpeltechTime.Droid.Core.Model;
@@ -27,12 +28,10 @@ namespace ImpeltechTime.Droid
         private TextView _plannedWorklogTextView;
         private Button _previousDateButton;
         private TextView _sentWorklogTextView;
-
-        //        private IElmaUser _user;
-        private IElmaTaskProvider _taskProvider;
         private ListView _tasksListView;
         private TaskTimer _timer;
-        private TextView _timerTextView;
+        private Chronometer _chronometer;
+        private IElmaTaskProvider _taskProvider;
 
         private event EventHandler OnCreateHandler;
 
@@ -41,19 +40,21 @@ namespace ImpeltechTime.Droid
 
             SetContentView (Resource.Layout.TaskList);
 
+            Log.Info ("TaskListActivity", "Starting");
+
             var creds = Intent.GetStringArrayExtra ("cred");
             if (null == creds || creds.Length != 2) {
-                // TODO: decide what to do with this possible error??? - not really possible already...
-                new AlertDialog.Builder (this).SetTitle ("Error")
-                                              .SetMessage ("Error getting credentials!")
-                                              .Show ();
-
+                Log.Error("TaskListActivity", "Error getting credentials! Finishing...");
+                Finish();
                 return;
             }
+
+            Log.Info ("TaskListActivity", $"creds[0]={creds[0]}, creds[1]={creds[1]}");
 
             var userProvider = App.Container.Resolve (typeof (ElmaUserProvider), "ElmaUserProvider") as ElmaUserProvider;
             var user = userProvider?.LoginUser (creds[0], creds[1]);
             if (null == user) {
+                Log.Error("TaskListActivity", "Error getting user instance! Returning to Login activity!");
                 var intent = new Intent (this, typeof (LoginActivity));
                 intent.PutExtra ("user_invalid", true);
                 StartActivity (intent);
@@ -76,7 +77,7 @@ namespace ImpeltechTime.Droid
 
             OnCreateHandler?.Invoke (this, EventArgs.Empty);
 
-            _timerTextView.Text = "blablabla";
+            Log.Info("TaskListActivity", "All OK");
         }
 
         private void SetupViews () {
@@ -91,7 +92,7 @@ namespace ImpeltechTime.Droid
             _tasksListView = FindViewById<ListView> (Resource.Id.tasksListView);
             _previousDateButton = FindViewById<Button> (Resource.Id.previousDateButton);
             _nextDateButton = FindViewById<Button> (Resource.Id.nextDateButton);
-            _timerTextView = FindViewById<TextView> (Resource.Id.timerTextView);
+            _chronometer = FindViewById<Chronometer> (Resource.Id.timerChronometer);
             _currentDateTextView = FindViewById<TextView> (Resource.Id.currentDateTextView);
             _plannedWorklogTextView = FindViewById<TextView> (Resource.Id.plannedWorklogTextView);
             _sentWorklogTextView = FindViewById<TextView> (Resource.Id.sentWorklogTextView);
@@ -110,15 +111,19 @@ namespace ImpeltechTime.Droid
         }
 
         private void SetupTimer () {
-            _timer = new TaskTimer (1000);
-            _timer.Elapsed += OnTimedEvent;
-            _timer.AutoReset = true;
-            _timer.Enabled = false;
-        }
+            _chronometer.ChronometerTick += delegate {
+                var time = SystemClock.ElapsedRealtime () - _chronometer.Base;
+                var h = (int)(time / 3600000);
+                var m = (int)(time - h * 3600000) / 60000;
+                var s = (int)(time - h * 3600000 - m * 60000) / 1000;
+                var hh = h < 10 ? "0" + h : h + "";
+                var mm = m < 10 ? "0" + m : m + "";
+                var ss = s < 10 ? "0" + s : s + "";
+                _chronometer.Text = hh + ":" + mm + ":" + ss;
+            };
 
-        private void OnTimedEvent (object source, ElapsedEventArgs e) {
-            _timerTextView.Text =
-                $"{_timer.ElapsedTimeSpan ()?.Hours}:{_timer.ElapsedTimeSpan ()?.Minutes}:{_timer.ElapsedTimeSpan ()?.Seconds}";
+            _timer = new TaskTimer (_chronometer);
+
         }
 
         private async Task<bool> ChangeCurrentDate (DateTime date) {

@@ -4,6 +4,7 @@ using Android.Accounts;
 using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Util;
 using Android.Widget;
 using ImpeltechTime.Droid;
 
@@ -18,23 +19,30 @@ namespace ImpeltechTime.Droid
             // Set our view from the "main" layout resource
             SetContentView (Resource.Layout.Login);
 
+            Log.Info("LoginActivity", "Starting");
+
             var pref = GetPreferences (FileCreationMode.Private);
             var userInvalid = Intent.GetBooleanExtra("user_invalid", false);
             if (userInvalid) {
+                Log.Info("LoginActivity", "User invalid");
                 var editor = pref.Edit();
                 editor.PutString("u_name", "");
                 editor.PutString("p", "");
                 editor.Commit();
             }
 
+            Log.Info("LoginActivity", "Getting credentials");
             var cred = new Tuple<string, string> (pref.GetString ("u_name", ""), pref.GetString ("p", ""));
 
             if (cred.Item1 != "") {
-                var intent = new Intent (this, typeof (TaskListActivity));
-                intent.PutExtra ("cred", new[] {cred.Item1, cred.Item2});
-                StartActivity (intent);
+                Log.Info("LoginActivity", "Got credentials and starting TaskListActivity");
+                var taskListIntent = new Intent (this, typeof (TaskListActivity));
+                taskListIntent.PutExtra ("cred", new[] {cred.Item1, cred.Item2});
+                StartActivity (taskListIntent);
                 Finish ();
+                Log.Info("LoginActivity", "Started TaskListActivity and Finishing LoginActivity");
                 // TODO: disable goback for activity if needed :
+//                     TODO: add logout!!!
                 // In AndroidManifest.xml add: android: noHistory = "true"
                 return;
             }
@@ -53,6 +61,8 @@ namespace ImpeltechTime.Droid
                 var intent = new Intent(this, typeof(TaskListActivity));
                 intent.PutExtra("cred", new[] { an, p });
                 StartActivity(intent);
+                Finish();
+                Log.Info("LoginActivity", "Started TaskListActivity and Finishing LoginActivity");
             };
         }
     }

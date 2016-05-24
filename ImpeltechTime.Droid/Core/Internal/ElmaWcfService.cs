@@ -68,8 +68,7 @@ namespace ImpeltechTime.Droid.Core.Internal
                 return null;
             }
             catch (Exception exception) {
-                Trace.WriteLine(exception.Message);
-                Log.Error(LogTag, exception.Message);
+                Log.Error("GetDateTime", exception.Message);
                 return null;
             }
         }
@@ -89,8 +88,7 @@ namespace ImpeltechTime.Droid.Core.Internal
             }
             catch (Exception exception)
             {
-                Trace.WriteLine(exception.Message);
-                Log.Error(LogTag, exception.Message);
+                Log.Error("GetTimeSpan", exception.Message);
                 return null;
             }
         }
@@ -156,21 +154,17 @@ namespace ImpeltechTime.Droid.Core.Internal
                     OperationContext.Current.OutgoingMessageHeaders.Add(MessageHeader.CreateHeader("SessionToken", "",
                         SessionToken));
 
-                    // TODO: make async!!!!!
+                    // TODO: findout why QueryAsync throws null exception or make it async another way!
                     return entityService.Query(typeuid, eqlQuery, sort, limit, offset, filterProviderUid,
                         filterProviderData, filter);
                 }
             }
             catch (FaultException<PublicServiceException> exception) {
-                // TODO: add logging!
-                Trace.WriteLine(exception.Message);
-                Log.Error(LogTag, exception.Message);
+                Log.Error("QueryData, FaultException", exception.Message);
                 return null;
             }
             catch (Exception exception) {
-                // TODO: add logging!
-                Trace.WriteLine(exception.Message);
-                Log.Error(LogTag, exception.Message);
+                Log.Error("QueryData, Exception", exception.Message);
                 return null;
             }
         }
@@ -189,15 +183,11 @@ namespace ImpeltechTime.Droid.Core.Internal
                 }
             }
             catch (FaultException<PublicServiceException> exception) {
-                // TODO: add logging!
-                Trace.WriteLine(exception.Message);
-                Log.Error(LogTag, exception.Message);
+                Log.Error("LoadData, FaultException", exception.Message);
                 return null;
             }
             catch (Exception exception) {
-                // TODO: add logging!
-                Trace.WriteLine(exception.Message);
-                Log.Error(LogTag, exception.Message);
+                Log.Error("LoadData, Exception", exception.Message);
                 return null;
             }
         }
@@ -226,15 +216,11 @@ namespace ImpeltechTime.Droid.Core.Internal
                 return true;
             }
             catch (FaultException<PublicServiceException> exception) {
-                // TODO: add logging!
-                Trace.WriteLine(exception.Message);
-                Log.Error(LogTag, exception.Message);
+                Log.Error("CheckToken, FaultException", exception.Message);
                 return false;
             }
             catch (Exception exception) {
-                // TODO: add logging!
-                Trace.WriteLine(exception.Message);
-                Log.Error(LogTag, exception.Message);
+                Log.Error("CheckToken, Exception", exception.Message);
                 return false;
             }
         }
@@ -264,15 +250,15 @@ namespace ImpeltechTime.Droid.Core.Internal
                 }
             }
             catch (FaultException<PublicServiceException> exception) {
-                // TODO: add logging!
-                Trace.WriteLine(exception.Message);
-                Log.Error(LogTag, exception.Message);
+                Log.Error("AuthorizeUser, FaultException", exception.Message);
+                Log.Error("AuthorizeUser, StackTrace", exception.StackTrace);
+                Log.Error("AuthorizeUser, Detail.Message", exception.Detail.Message);
+                Log.Error("AuthorizeUser, exception.Detail.StatusCode", exception.Detail.StatusCode.ToString());
+                Log.Error("AuthorizeUser, exception.Code", exception.Code.ToString ());
                 return null;
             }
             catch (Exception exception) {
-                // TODO: add logging!
-                Trace.WriteLine(exception.Message);
-                Log.Error(LogTag, exception.Message);
+                Log.Error("AuthorizeUser, FaultException", exception.Message);
                 return null;
             }
             return user;

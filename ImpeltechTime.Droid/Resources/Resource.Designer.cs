@@ -214,7 +214,7 @@ namespace ImpeltechTime.Droid
 			public const int timeInfoLayout = 2131034125;
 			
 			// aapt resource value: 0x7f050007
-			public const int timerTextView = 2131034119;
+			public const int timerChronometer = 2131034119;
 			
 			// aapt resource value: 0x7f05001f
 			public const int unaccountedTextView = 2131034143;

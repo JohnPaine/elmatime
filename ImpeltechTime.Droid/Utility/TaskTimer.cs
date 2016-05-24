@@ -1,57 +1,33 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Timers;
+using Android.OS;
+using Android.Widget;
 using ImpeltechTime.Droid.Core.Model;
 
 namespace ImpeltechTime.Droid.Utility
 {
-    public class TaskTimer : Timer
+    public class TaskTimer
     {
-        private readonly Stopwatch _stopwatch;
         private IElmaTask _currentlyExecutingTask;
+        private readonly Chronometer _chronometer;
 
-        public TaskTimer (double interval) : base(interval) {
-            _stopwatch = new Stopwatch ();
+        public TaskTimer (Chronometer chronometer) {
+            _chronometer = chronometer;
         }
 
         public void StartTimer (IElmaTask task) {
-            if (null != _currentlyExecutingTask && _currentlyExecutingTask.Id != task.Id) {
-                RestartTimer (task);
-            }
-            else {
-                Start ();
-                _stopwatch.Start ();
-                _currentlyExecutingTask = task;
-            }
-        }
-
-        public void StopTimer (IElmaTask task) {
-            Stop ();
-            _stopwatch.Stop ();
-            if (_currentlyExecutingTask.Id == task.Id)
-                task.AddUnaccountedTime (ElapsedTimeSpan ());
-        }
-
-        private void ResetTimer (IElmaTask task) {
-            _currentlyExecutingTask?.AddUnaccountedTime(ElapsedTimeSpan());
-            Stop();
-            _stopwatch.Reset ();
+            _chronometer.Base = SystemClock.ElapsedRealtime ();
+            _chronometer.Start ();
             _currentlyExecutingTask = task;
         }
 
-        private void RestartTimer (IElmaTask task) {
-            _currentlyExecutingTask?.AddUnaccountedTime(ElapsedTimeSpan());
-            Start ();
-            _stopwatch.Restart ();
-            _currentlyExecutingTask = task;
+        public void StopTimer () {
+            _chronometer.Stop ();
+            _currentlyExecutingTask.AddUnaccountedTime (ElapsedTimeSpan ());
         }
 
-        public TimeSpan? ElapsedTimeSpan () {
-            return _stopwatch.Elapsed;
-        }
-
-        public long? ElapsedMilliseconds () {
-            return _stopwatch.ElapsedMilliseconds;
+        private TimeSpan? ElapsedTimeSpan () {
+            var millisec = SystemClock.ElapsedRealtime() - _chronometer.Base;
+            return new TimeSpan(millisec * 10000);
         }
     }
 }

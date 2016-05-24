@@ -56,8 +56,9 @@
             android:layout_below="@+id/passwordEditText"
             android:layout_marginTop="50dp"
             style="@android:style/Widget.Material.Button.Colored"
-            android:backgroundTint="#fa8a34"
+            android:backgroundTint="#ffa500ff"
             android:textSize="20sp"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            android:gravity="center" />
     </RelativeLayout>
 </RelativeLayout>

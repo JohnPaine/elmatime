@@ -70,8 +70,8 @@ namespace ImpeltechTime.Droid.Core.Providers
             if (task.LoggingState != TaskLoggingState.Logging)
                 return false;
 
-            _timer.StopTimer (task);
             task.LoggingState = TaskLoggingState.Paused;
+            _timer.StopTimer ();
             if (emitChanged)
                 OnTasksChangedEvent?.Invoke(this, EventArgs.Empty);
 

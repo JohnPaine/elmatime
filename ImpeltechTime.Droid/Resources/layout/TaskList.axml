@@ -16,25 +16,20 @@
         android:background="#ea7324"
         style="@android:style/Widget.Holo.ActionBar"
         android:elevation="7dp">
-        <TextView
+        <Chronometer
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="none"
             android:ems="10"
-            android:id="@+id/timerTextView"
-            android:layout_alignParentTop="true"
-            android:text="05:00:02"
-            android:gravity="center"
             style="@android:style/Widget.Material.TimePicker"
             android:background="@android:drawable/dialog_holo_light_frame"
-            android:autoText="false"
+            android:id="@+id/timerChronometer"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
             android:backgroundTint="#ffffff"
             android:textSize="15sp"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:textColor="#424242"
-            android:editable="false"
-            android:clickable="false" />
+            android:textColor="#424242" />
         <Button
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -149,16 +144,13 @@
         android:layout_above="@+id/footerLayout"
         android:elevation="3dp">
         <ListView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/tasksListView"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:textFilterEnabled="false"
-            android:footerDividersEnabled="true"
-            tools:listitem="@android:layout/simple_list_item_2"
-            style="@android:style/Widget.Material.Light.ListView"
-            android:background="#ffffff" />
+            android:background="#ffffff"
+            android:elevation="10dp" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
