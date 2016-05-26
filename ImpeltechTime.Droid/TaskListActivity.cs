@@ -18,7 +18,7 @@ using Microsoft.Practices.Unity;
 
 namespace ImpeltechTime.Droid
 {
-    [Activity (Label = "TaskListActivity")]
+    [Activity (Label = "TaskListActivity", Theme = "@style/CustomActionBarTheme")]
     public class TaskListActivity : Activity
     {
         private readonly Dictionary<int, TaskAdapter> _taskAdapters = new Dictionary<int, TaskAdapter> ();
@@ -27,6 +27,7 @@ namespace ImpeltechTime.Droid
         private Button _nextDateButton;
         private Button _previousDateButton;
         private Button _menuButton;
+        private Button _sendAllWorklogsButton;
         private TextView _plannedWorklogTextView;
         private TextView _sentWorklogTextView;
         private ListView _tasksListView;
@@ -41,6 +42,8 @@ namespace ImpeltechTime.Droid
 
             SetContentView (Resource.Layout.TaskList);
 
+            // TODO: add some "loading sign" while this activity is loading
+
             Log.Info ("TaskListActivity", "Starting");
 
             var creds = Intent.GetStringArrayExtra ("cred");
@@ -50,7 +53,7 @@ namespace ImpeltechTime.Droid
                 return;
             }
 
-            Log.Info ("TaskListActivity", $"creds[0]={creds[0]}, creds[1]={creds[1]}");
+            Log.Info ("TaskListActivity", $"creds[0]={creds[0]}, creds[1]={creds[1]}");            
 
             var userProvider = App.Container.Resolve (typeof (ElmaUserProvider), "ElmaUserProvider") as ElmaUserProvider;
             var user = userProvider?.LoginUser (creds[0], creds[1]);
@@ -84,6 +87,8 @@ namespace ImpeltechTime.Droid
         private void SetupViews () {
             FindViews ();
             SetupTimer ();
+            SetupMenu ();
+            SetupButtons ();
 
             _previousDateButton.Click += async (sender, e) => { await ChangeCurrentDate (_currentDate.AddDays (-1)); };
             _nextDateButton.Click += async (sender, e) => { await ChangeCurrentDate (_currentDate.AddDays (1)); };
@@ -94,24 +99,7 @@ namespace ImpeltechTime.Droid
             _previousDateButton = FindViewById<Button> (Resource.Id.previousDateButton);
             _nextDateButton = FindViewById<Button> (Resource.Id.nextDateButton);
             _menuButton = FindViewById<Button> (Resource.Id.menuButton);
-            _menuButton.Click += (s, arg) => {
-                var menu = new PopupMenu (this, _menuButton);
-
-                menu.Inflate (Resource.Layout.main_menu);
-
-                menu.MenuItemClick += (s1, arg1) => {
-                    // TODO: replace hardcoded text checking with Id checking!!!
-                    if (arg1.Item.TitleFormatted.ToString () == "Logout") {
-                        Log.Error("TaskListActivity", "Logging out!");
-                        var intent = new Intent(this, typeof(LoginActivity));
-                        intent.PutExtra("user_invalid", true);
-                        StartActivity(intent);
-                        Finish();
-                    }
-                };
-
-                menu.Show ();
-            };
+            _sendAllWorklogsButton = FindViewById<Button> (Resource.Id.sendAllWorklogButton);
             _chronometer = FindViewById<Chronometer> (Resource.Id.timerChronometer);
             _currentDateTextView = FindViewById<TextView> (Resource.Id.currentDateTextView);
             _plannedWorklogTextView = FindViewById<TextView> (Resource.Id.plannedWorklogTextView);
@@ -128,6 +116,38 @@ namespace ImpeltechTime.Droid
             }
             _plannedWorklogTextView.Text = $"{planned} hours planned";
             _sentWorklogTextView.Text = $"{sent} hours sent";
+        }
+
+        private void SetupButtons () {
+            // TODO: implement sending worklogs for tasks of current date or for all at once??
+            _sendAllWorklogsButton.Click += async delegate {
+                var tasks = await _taskProvider.GetTasksForDate (_currentDate);
+                if (null == tasks)
+                    return;
+                // TODO: add some sign for user about sending and change @sendStatusImageButton image on success or fail
+                foreach (var task in tasks)
+                    _taskProvider.SendTaskWorklog (task);                
+            };
+        }
+
+        private void SetupMenu () {
+            _menuButton.Click += (s, arg) => {
+                var menu = new PopupMenu(this, _menuButton);
+
+                menu.Inflate(Resource.Layout.main_menu);
+
+                menu.MenuItemClick += (s1, arg1) => {
+                    if (arg1.Item.ItemId == Resource.Id.logoutItem) {
+                        Log.Error("TaskListActivity", "Logging out!");
+                        var intent = new Intent(this, typeof(LoginActivity));
+                        intent.PutExtra("user_invalid", true);
+                        StartActivity(intent);
+                        Finish();
+                    }
+                };
+
+                menu.Show();
+            };
         }
 
         private void SetupTimer () {

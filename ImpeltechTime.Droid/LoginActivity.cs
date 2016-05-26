@@ -7,6 +7,7 @@ using Android.OS;
 using Android.Util;
 using Android.Widget;
 using ImpeltechTime.Droid;
+using ImpeltechTime.Droid.Core.Providers;
 
 namespace ImpeltechTime.Droid
 {
@@ -42,7 +43,6 @@ namespace ImpeltechTime.Droid
                 Finish ();
                 Log.Info("LoginActivity", "Started TaskListActivity and Finishing LoginActivity");
                 // TODO: disable goback for activity if needed :
-//                     TODO: add logout!!!
                 // In AndroidManifest.xml add: android: noHistory = "true"
                 return;
             }
@@ -52,6 +52,15 @@ namespace ImpeltechTime.Droid
             button.Click += delegate {
                 var an = FindViewById<EditText>(Resource.Id.loginEditText).Text;
                 var p = FindViewById<EditText>(Resource.Id.passwordEditText).Text;
+
+                // TODO: add "loading sign" while authorizing user
+                var userProvider = App.Container.Resolve(typeof(ElmaUserProvider), "ElmaUserProvider") as ElmaUserProvider;
+                var user = userProvider?.LoginUser(an, p);
+                if (null == user) {
+                    // TODO: add some tooltip for user that credentials aren't OK or Internet is off...
+                    // TODO: add checking for App permissions if needed
+                    return;
+                }
 
                 var editor = pref.Edit ();
                 editor.PutString ("u_name", an);

@@ -16,6 +16,7 @@ namespace ImpeltechTime.Droid.Adapters
         private readonly IElmaTaskProvider _taskProvider;
         private TextView _remainingTimeTextView;
         private Button _taskLoggingStateButton;
+        private Button _sendWorklogButton;
         private List<IElmaTask> _tasks;
 
         private TextView _taskSubjectTextView;
@@ -45,6 +46,7 @@ namespace ImpeltechTime.Droid.Adapters
             _remainingTimeTextView = convertView.FindViewById<TextView> (Resource.Id.remainingTimeTextView);
             _unaccountedWorkTimeTextView = convertView.FindViewById<TextView> (Resource.Id.unaccountedWorkTimeTextView);
             _taskLoggingStateButton = convertView.FindViewById<Button> (Resource.Id.taskLoggingStateButton);
+            _sendWorklogButton = convertView.FindViewById<Button> (Resource.Id.sendWorklogButton);
             _unaccountedLayout = convertView.FindViewById<RelativeLayout> (Resource.Id.unaccountedTimeLayout);
         }
 
@@ -98,6 +100,10 @@ namespace ImpeltechTime.Droid.Adapters
                         _taskProvider.PauseTaskExecution (task);
                         _taskLoggingStateButton.SetBackgroundResource (Android.Resource.Drawable.IcMediaPlay);
                     }
+                };
+
+                _sendWorklogButton.Click += delegate {
+                    _taskProvider.SendTaskWorklog (task);
                 };
             }
 

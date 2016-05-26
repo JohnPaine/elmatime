@@ -33,7 +33,7 @@ namespace ImpeltechTime.Droid.Core.Model.Providers
         /// </summary>
         /// <param name="task"></param>
         /// <returns></returns>
-        bool StopTaskExecution(IElmaTask task);
+        bool SendTaskWorklog(IElmaTask task);
 
         event EventHandler OnTasksChangedEvent;
     }

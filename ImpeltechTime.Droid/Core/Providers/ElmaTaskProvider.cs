@@ -17,7 +17,7 @@ namespace ImpeltechTime.Droid.Core.Providers
 
         private List<IElmaTask> _allTasks = new List<IElmaTask> ();
         // TODO: decide when to update!!!
-        // I think updates will be needed after app sleep in background or so...
+        // I think updates will be needed after app wakes up from the background
         public bool UpdateNeeded { get; set; }
 
         public ElmaTaskProvider (IElmaServiceProvider elmaServiceProvider, IElmaUser user, TaskTimer timer) {
@@ -78,7 +78,7 @@ namespace ImpeltechTime.Droid.Core.Providers
             return true;
         }
 
-        public bool StopTaskExecution(IElmaTask task) {
+        public bool SendTaskWorklog(IElmaTask task) {
             if (task.LoggingState == TaskLoggingState.NotLogging)
                 return false;
 
