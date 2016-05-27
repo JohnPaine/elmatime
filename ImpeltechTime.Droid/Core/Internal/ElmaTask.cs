@@ -17,6 +17,8 @@ namespace ImpeltechTime.Droid.Core.Internal
 
             Priority = TaskPriority.Low;
             LoggingState = TaskLoggingState.NotLogging;
+            WorkLogs = new List<IElmaWorkLog> ();
+            UnaccountedWorkLog = null;
         }
 
         public long Id { get; }
@@ -29,6 +31,8 @@ namespace ImpeltechTime.Droid.Core.Internal
         public TaskPriority Priority { get; set; }
         public TaskLoggingState LoggingState { get; set; }
         public List<IElmaWorkLog> WorkLogs { get; set; }
+        public IElmaWorkLog UnaccountedWorkLog { get; set; }
+
         public void AddWorkingTime (DateTime startDate, TimeSpan factWorktime, string comment) {
             throw new NotImplementedException ();
         }
@@ -58,6 +62,6 @@ namespace ImpeltechTime.Droid.Core.Internal
             }
         }
 
-        public TimeSpan? UnaccountedWorkTime { get; private set; }
+        public TimeSpan? UnaccountedWorkTime { get; set; }
     }
 }

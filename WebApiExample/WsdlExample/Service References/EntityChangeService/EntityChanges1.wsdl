@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.elma-bpm.ru/api/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.elma-bpm.ru/api/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.elma-bpm.ru/api/Imports">
+      <xsd:import schemaLocation="http://bpm-demo.impeltech.ru/API/EntityChanges?xsd=xsd0" namespace="http://www.elma-bpm.ru/api/" />
+      <xsd:import schemaLocation="http://bpm-demo.impeltech.ru/API/EntityChanges?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" />
+      <xsd:import schemaLocation="http://bpm-demo.impeltech.ru/API/EntityChanges?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://bpm-demo.impeltech.ru/API/EntityChanges?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/EleWise.ELMA.API.Models" />
+      <xsd:import schemaLocation="http://bpm-demo.impeltech.ru/API/EntityChanges?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IEntityChangesService_IsSupported_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsSupported" />
+  </wsdl:message>
+  <wsdl:message name="IEntityChangesService_IsSupported_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsSupportedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEntityChangesService_IsSupported_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" name="detail" element="q1:PublicServiceException" />
+  </wsdl:message>
+  <wsdl:message name="IEntityChangesService_Changes_InputMessage">
+    <wsdl:part name="parameters" element="tns:Changes" />
+  </wsdl:message>
+  <wsdl:message name="IEntityChangesService_Changes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEntityChangesService_Changes_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" name="detail" element="q2:PublicServiceException" />
+  </wsdl:message>
+  <wsdl:message name="IEntityChangesService_ChangesCommit_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangesCommit" />
+  </wsdl:message>
+  <wsdl:message name="IEntityChangesService_ChangesCommit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangesCommitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEntityChangesService_ChangesCommit_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" name="detail" element="q3:PublicServiceException" />
+  </wsdl:message>
+  <wsdl:message name="IEntityChangesService_Sync_InputMessage">
+    <wsdl:part name="parameters" element="tns:Sync" />
+  </wsdl:message>
+  <wsdl:message name="IEntityChangesService_Sync_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SyncResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEntityChangesService_Sync_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" name="detail" element="q4:PublicServiceException" />
+  </wsdl:message>
+  <wsdl:portType name="IEntityChangesService">
+    <wsdl:documentation>
+      <summary>Сервис для отслеживания изменений сущностей</summary>
+    </wsdl:documentation>
+    <wsdl:operation name="IsSupported">
+      <wsdl:documentation>
+        <summary>Проверить, поддерживается ли получение изменений для сущностей данного типа</summary>
+        <returns>True, если отслеживание изменений поддерживается</returns>
+        <param name="typeuid">Идентификатор типа сущности</param>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/IEntityChangesService/IsSupported" message="tns:IEntityChangesService_IsSupported_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/IEntityChangesService/IsSupportedResponse" message="tns:IEntityChangesService_IsSupported_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api//IsSupportedPublicServiceExceptionFault" name="PublicServiceExceptionFault" message="tns:IEntityChangesService_IsSupported_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Changes">
+      <wsdl:documentation>
+        <summary>Получить изменения по заданному запросу после указанной даты</summary>
+        <returns>Ответ с изменениями</returns>
+        <param name="typeuid">Идентификатор типа сущности</param>
+        <param name="fromServerTime">Серверная дата начала интервала проверки</param>
+        <param name="eqlQuery">Запрос на языке EQL. Может быть пустой</param>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/IEntityChangesService/Changes" message="tns:IEntityChangesService_Changes_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/IEntityChangesService/ChangesResponse" message="tns:IEntityChangesService_Changes_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api//ChangesPublicServiceExceptionFault" name="PublicServiceExceptionFault" message="tns:IEntityChangesService_Changes_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangesCommit">
+      <wsdl:documentation>
+        <summary>Синхонизировать данные на сервере по идентификатору ответа после метода Changes</summary>
+        <returns>True, если данные синхронизированы на сервере</returns>
+        <param name="id">Идентификатор ответа синхронизации</param>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/IEntityChangesService/ChangesCommit" message="tns:IEntityChangesService_ChangesCommit_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/IEntityChangesService/ChangesCommitResponse" message="tns:IEntityChangesService_ChangesCommit_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api//ChangesCommitPublicServiceExceptionFault" name="PublicServiceExceptionFault" message="tns:IEntityChangesService_ChangesCommit_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Sync">
+      <wsdl:documentation>
+        <summary>Синхонизировать данные на сервере с данными на клиенте</summary>
+        <returns>True, если данные успешно сохранены</returns>
+        <param name="changes">Запрос на синхронизацию</param>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/IEntityChangesService/Sync" message="tns:IEntityChangesService_Sync_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/IEntityChangesService/SyncResponse" message="tns:IEntityChangesService_Sync_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api//SyncPublicServiceExceptionFault" name="PublicServiceExceptionFault" message="tns:IEntityChangesService_Sync_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding-ELMA_IEntityChangesService" type="tns:IEntityChangesService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IsSupported">
+      <soap:operation soapAction="http://www.elma-bpm.ru/api/IEntityChangesService/IsSupported" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="PublicServiceExceptionFault">
+        <soap:fault use="literal" name="PublicServiceExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Changes">
+      <soap:operation soapAction="http://www.elma-bpm.ru/api/IEntityChangesService/Changes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="PublicServiceExceptionFault">
+        <soap:fault use="literal" name="PublicServiceExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ChangesCommit">
+      <soap:operation soapAction="http://www.elma-bpm.ru/api/IEntityChangesService/ChangesCommit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="PublicServiceExceptionFault">
+        <soap:fault use="literal" name="PublicServiceExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Sync">
+      <soap:operation soapAction="http://www.elma-bpm.ru/api/IEntityChangesService/Sync" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="PublicServiceExceptionFault">
+        <soap:fault use="literal" name="PublicServiceExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

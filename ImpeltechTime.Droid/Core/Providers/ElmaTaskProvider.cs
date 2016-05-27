@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
+using ImpeltechTime.Droid.Core.Internal;
 using ImpeltechTime.Droid.Core.Model;
 using ImpeltechTime.Droid.Core.Model.Providers;
 using ImpeltechTime.Droid.Utility;
@@ -78,14 +79,39 @@ namespace ImpeltechTime.Droid.Core.Providers
             return true;
         }
 
-        public bool SendTaskWorklog(IElmaTask task) {
+        public bool SendTaskWorklog (IElmaTask task) {
             if (task.LoggingState == TaskLoggingState.NotLogging)
                 return false;
 
             task.LoggingState = TaskLoggingState.NotLogging;
+            _timer.StopTimer ();
 
-            // TODO: implement sending!
-            // here we stop timer and send worklog
+            // TODO: DateTime.Now probably have to be changed to UtcNow
+            // TODO: add form for changing StartDate and Comment
+            if (null == task.UnaccountedWorkLog) {
+                task.UnaccountedWorkLog = new ElmaWorkLog (0, Guid.Empty) {
+                    StartDate = DateTime.Now,
+                    Comment = "Sent from mobile app",
+                    WorkTime = task.UnaccountedWorkTime
+                };
+            }
+            else {
+                if (null == task.UnaccountedWorkLog.WorkTime)
+                    task.UnaccountedWorkLog.WorkTime = new TimeSpan();
+                if (task.UnaccountedWorkTime != null)
+                    task.UnaccountedWorkLog.WorkTime += task.UnaccountedWorkTime.Value;
+            }
+
+            if (_wcfService.SendWorkLogAsync (_user, task).Result == false) {
+                // TODO: add some message for user about that and change green cloud to red cross or smth..
+                OnTasksChangedEvent?.Invoke(this, EventArgs.Empty);
+
+
+                return false;
+            }
+
+            task.UnaccountedWorkTime = null;
+            task.UnaccountedWorkLog = null;
 
             OnTasksChangedEvent?.Invoke(this, EventArgs.Empty);
 

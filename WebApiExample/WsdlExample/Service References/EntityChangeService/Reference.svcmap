@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e0664ca6-68c0-44c1-b2d1-9f5ce88b3a11" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://bpm-demo.impeltech.ru/API/EntityChanges?wsdl=wsdl0" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="EntityChanges5.xsd" MetadataType="Schema" ID="411aeebd-1652-44d4-8dca-93c1639c212d" SourceId="1" SourceUrl="http://bpm-demo.impeltech.ru/API/EntityChanges?xsd=xsd3" />
+    <MetadataFile FileName="EntityChanges51.xsd" MetadataType="Schema" ID="dcc34d90-a175-47f4-9504-ffc5743d7957" SourceId="1" SourceUrl="http://bpm-demo.impeltech.ru/API/EntityChanges?xsd=xsd2" />
+    <MetadataFile FileName="EntityChanges52.xsd" MetadataType="Schema" ID="ad70ac67-9762-4386-8555-d62a3ed4bdc4" SourceId="1" SourceUrl="http://bpm-demo.impeltech.ru/API/EntityChanges?xsd=xsd4" />
+    <MetadataFile FileName="EntityChanges53.xsd" MetadataType="Schema" ID="4a9b7612-6910-460f-ac17-8780f5d04471" SourceId="1" SourceUrl="http://bpm-demo.impeltech.ru/API/EntityChanges?xsd=xsd0" />
+    <MetadataFile FileName="EntityChanges54.xsd" MetadataType="Schema" ID="7297e897-fb64-4585-a2af-32f90262c05c" SourceId="1" SourceUrl="http://bpm-demo.impeltech.ru/API/EntityChanges?xsd=xsd1" />
+    <MetadataFile FileName="EntityChanges1.wsdl" MetadataType="Wsdl" ID="3acee7db-138c-4ac1-9868-66da51f585ee" SourceId="1" SourceUrl="http://bpm-demo.impeltech.ru/API/EntityChanges?wsdl=wsdl0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

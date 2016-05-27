@@ -25,21 +25,5 @@ namespace ImpeltechTime.Droid.Core.Internal
         public DateTime? StartDate { get; set; }
         public TimeSpan? WorkTime { get; set; }
         public string Comment { get; set; }
-
-//        public void AddTimeToLog (DateTime timeToLog) {
-//            WorkTime += TimeSpan(timeToLog);
-//        }
-
-        /// <summary>
-        /// If LogTime returns false, WorkTime remains till serialization
-        /// or until next attempt to log time.
-        /// Otherwise, WorkTime is cleared with StartDate
-        /// </summary>
-        /// <returns>
-        /// true if succesfully logged to server. Otherwise, returns false
-        /// </returns>
-        public bool LogTime () {
-            throw new NotImplementedException ();
-        }
     }
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c9b8a930-3b62-4272-abd3-4ed9f67a7f75" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://bpm-demo.impeltech.ru/API/Tasks?wsdl=wsdl0" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Tasks.xsd" MetadataType="Schema" ID="c631b2a0-0dcf-47ee-bf45-99bc88eeec06" SourceId="1" SourceUrl="http://bpm-demo.impeltech.ru/API/Tasks?xsd=xsd3" />
+    <MetadataFile FileName="Tasks.wsdl" MetadataType="Wsdl" ID="9bce1361-fcbd-40d5-b25c-2593471f4762" SourceId="1" SourceUrl="http://bpm-demo.impeltech.ru/API/Tasks?wsdl=wsdl0" />
+    <MetadataFile FileName="Tasks1.xsd" MetadataType="Schema" ID="83c7560c-e041-4e97-992a-dc0aabcd6532" SourceId="1" SourceUrl="http://bpm-demo.impeltech.ru/API/Tasks?xsd=xsd0" />
+    <MetadataFile FileName="Tasks2.xsd" MetadataType="Schema" ID="d69dd2d1-441a-459c-bc77-0ec8ce8a874c" SourceId="1" SourceUrl="http://bpm-demo.impeltech.ru/API/Tasks?xsd=xsd4" />
+    <MetadataFile FileName="Tasks3.xsd" MetadataType="Schema" ID="cca74da2-4fdc-496f-8cb1-34344bf93c62" SourceId="1" SourceUrl="http://bpm-demo.impeltech.ru/API/Tasks?xsd=xsd1" />
+    <MetadataFile FileName="Tasks4.xsd" MetadataType="Schema" ID="56e1bed6-c0a7-407c-a084-4ebb8a47b393" SourceId="1" SourceUrl="http://bpm-demo.impeltech.ru/API/Tasks?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

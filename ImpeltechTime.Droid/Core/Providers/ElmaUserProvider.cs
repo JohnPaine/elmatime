@@ -17,9 +17,5 @@ namespace ImpeltechTime.Droid.Core.Providers
         public IElmaUser LoginUser (string accName, string pass) {
             return _wcfService.LoginUser (accName, pass);
         }
-
-        public bool LogoutUser (IElmaUser user) {
-            return _wcfService.LogoutUser (user);
-        }
     }
 }

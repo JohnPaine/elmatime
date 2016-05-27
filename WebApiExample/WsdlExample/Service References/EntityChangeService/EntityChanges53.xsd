@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.elma-bpm.ru/api/" elementFormDefault="qualified" targetNamespace="http://www.elma-bpm.ru/api/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://bpm-demo.impeltech.ru/API/EntityChanges?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/EleWise.ELMA.API.Models" />
+  <xs:import schemaLocation="http://bpm-demo.impeltech.ru/API/EntityChanges?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:element name="IsSupported">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="typeuid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsSupportedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsSupportedResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Changes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="typeuid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="fromServerTime" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="eqlQuery" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/EleWise.ELMA.API.Models" minOccurs="0" name="ChangesResult" nillable="true" type="q1:Changes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangesCommit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q2:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangesCommitResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ChangesCommitResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Sync">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/EleWise.ELMA.API.Models" minOccurs="0" name="changes" nillable="true" type="q3:SyncChanges" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SyncResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SyncResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.elma-bpm.ru/api/Tasks" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.elma-bpm.ru/api/Tasks" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.elma-bpm.ru/api/Tasks/Imports">
+      <xsd:import schemaLocation="http://bpm-demo.impeltech.ru/API/Tasks?xsd=xsd0" namespace="http://www.elma-bpm.ru/api/Tasks" />
+      <xsd:import schemaLocation="http://bpm-demo.impeltech.ru/API/Tasks?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://bpm-demo.impeltech.ru/API/Tasks?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" />
+      <xsd:import schemaLocation="http://bpm-demo.impeltech.ru/API/Tasks?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models.API" />
+      <xsd:import schemaLocation="http://bpm-demo.impeltech.ru/API/Tasks?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Tasks_Create_InputMessage">
+    <wsdl:part name="parameters" element="tns:Create" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_Create_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_Create_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:PublicServiceExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_Reopen_InputMessage">
+    <wsdl:part name="parameters" element="tns:Reopen" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_Reopen_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReopenResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_Reopen_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:PublicServiceExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_AddComment_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddComment" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_AddComment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCommentResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_AddComment_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:PublicServiceExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_Complete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Complete" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_Complete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CompleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_Complete_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:PublicServiceExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_Incomplete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Incomplete" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_Incomplete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IncompleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_Incomplete_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:PublicServiceExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_StartWork_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartWork" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_StartWork_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartWorkResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_StartWork_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:PublicServiceExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_MarkRead_InputMessage">
+    <wsdl:part name="parameters" element="tns:MarkRead" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_MarkRead_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MarkReadResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_MarkRead_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:PublicServiceExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_Redirect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Redirect" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_Redirect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RedirectResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_Redirect_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:PublicServiceExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_ChangeEndDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeEndDate" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_ChangeEndDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeEndDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_ChangeEndDate_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:PublicServiceExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_ControlComplete_InputMessage">
+    <wsdl:part name="parameters" element="tns:ControlComplete" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_ControlComplete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ControlCompleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_ControlComplete_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:PublicServiceExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_ChangeControl_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeControl" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_ChangeControl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeControlResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_ChangeControl_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:PublicServiceExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_Close_InputMessage">
+    <wsdl:part name="parameters" element="tns:Close" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_Close_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CloseResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_Close_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:PublicServiceExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_AddQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddQuestion" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_AddQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_AddQuestion_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:PublicServiceExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_AnswerQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:AnswerQuestion" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_AnswerQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AnswerQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_AnswerQuestion_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:PublicServiceExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_ConfirmApproval_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmApproval" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_ConfirmApproval_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConfirmApprovalResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_ConfirmApproval_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:PublicServiceExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_RefuseApproval_InputMessage">
+    <wsdl:part name="parameters" element="tns:RefuseApproval" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_RefuseApproval_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RefuseApprovalResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_RefuseApproval_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:PublicServiceExceptionFault" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_ApprovementStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:ApprovementStatus" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_ApprovementStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ApprovementStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="Tasks_ApprovementStatus_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part name="detail" element="tns:PublicServiceExceptionFault" />
+  </wsdl:message>
+  <wsdl:portType name="Tasks">
+    <wsdl:operation name="Create">
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/Tasks/Create" message="tns:Tasks_Create_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/Tasks/CreateResponse" message="tns:Tasks_Create_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api/Tasks/Create" name="PublicServiceExceptionFault" message="tns:Tasks_Create_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Reopen">
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/Tasks/Reopen" message="tns:Tasks_Reopen_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/Tasks/ReopenResponse" message="tns:Tasks_Reopen_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api/Tasks/Reopen" name="PublicServiceExceptionFault" message="tns:Tasks_Reopen_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddComment">
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/Tasks/AddComment" message="tns:Tasks_AddComment_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/Tasks/AddCommentResponse" message="tns:Tasks_AddComment_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api/Tasks/AddComment" name="PublicServiceExceptionFault" message="tns:Tasks_AddComment_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Complete">
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/Tasks/Complete" message="tns:Tasks_Complete_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/Tasks/CompleteResponse" message="tns:Tasks_Complete_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api/Tasks/Complete" name="PublicServiceExceptionFault" message="tns:Tasks_Complete_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Incomplete">
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/Tasks/Incomplete" message="tns:Tasks_Incomplete_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/Tasks/IncompleteResponse" message="tns:Tasks_Incomplete_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api/Tasks/Incomplete" name="PublicServiceExceptionFault" message="tns:Tasks_Incomplete_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StartWork">
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/Tasks/StartWork" message="tns:Tasks_StartWork_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/Tasks/StartWorkResponse" message="tns:Tasks_StartWork_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api/Tasks/StartWork" name="PublicServiceExceptionFault" message="tns:Tasks_StartWork_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MarkRead">
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/Tasks/MarkRead" message="tns:Tasks_MarkRead_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/Tasks/MarkReadResponse" message="tns:Tasks_MarkRead_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api/Tasks/MarkRead" name="PublicServiceExceptionFault" message="tns:Tasks_MarkRead_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Redirect">
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/Tasks/Redirect" message="tns:Tasks_Redirect_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/Tasks/RedirectResponse" message="tns:Tasks_Redirect_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api/Tasks/Redirect" name="PublicServiceExceptionFault" message="tns:Tasks_Redirect_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeEndDate">
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/Tasks/ChangeEndDate" message="tns:Tasks_ChangeEndDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/Tasks/ChangeEndDateResponse" message="tns:Tasks_ChangeEndDate_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api/Tasks/ChangeEndDate" name="PublicServiceExceptionFault" message="tns:Tasks_ChangeEndDate_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ControlComplete">
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/Tasks/ControlComplete" message="tns:Tasks_ControlComplete_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/Tasks/ControlCompleteResponse" message="tns:Tasks_ControlComplete_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api/Tasks/ControlComplete" name="PublicServiceExceptionFault" message="tns:Tasks_ControlComplete_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeControl">
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/Tasks/ChangeControl" message="tns:Tasks_ChangeControl_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/Tasks/ChangeControlResponse" message="tns:Tasks_ChangeControl_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api/Tasks/ChangeControl" name="PublicServiceExceptionFault" message="tns:Tasks_ChangeControl_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Close">
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/Tasks/Close" message="tns:Tasks_Close_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/Tasks/CloseResponse" message="tns:Tasks_Close_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api/Tasks/Close" name="PublicServiceExceptionFault" message="tns:Tasks_Close_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddQuestion">
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/Tasks/AddQuestion" message="tns:Tasks_AddQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/Tasks/AddQuestionResponse" message="tns:Tasks_AddQuestion_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api/Tasks/AddQuestion" name="PublicServiceExceptionFault" message="tns:Tasks_AddQuestion_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AnswerQuestion">
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/Tasks/AnswerQuestion" message="tns:Tasks_AnswerQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/Tasks/AnswerQuestionResponse" message="tns:Tasks_AnswerQuestion_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api/Tasks/AnswerQuestion" name="PublicServiceExceptionFault" message="tns:Tasks_AnswerQuestion_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmApproval">
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/Tasks/ConfirmApproval" message="tns:Tasks_ConfirmApproval_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/Tasks/ConfirmApprovalResponse" message="tns:Tasks_ConfirmApproval_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api/Tasks/ConfirmApproval" name="PublicServiceExceptionFault" message="tns:Tasks_ConfirmApproval_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RefuseApproval">
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/Tasks/RefuseApproval" message="tns:Tasks_RefuseApproval_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/Tasks/RefuseApprovalResponse" message="tns:Tasks_RefuseApproval_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api/Tasks/RefuseApproval" name="PublicServiceExceptionFault" message="tns:Tasks_RefuseApproval_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ApprovementStatus">
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/Tasks/ApprovementStatus" message="tns:Tasks_ApprovementStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/Tasks/ApprovementStatusResponse" message="tns:Tasks_ApprovementStatus_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api/Tasks/ApprovementStatus" name="PublicServiceExceptionFault" message="tns:Tasks_ApprovementStatus_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

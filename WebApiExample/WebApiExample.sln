@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WsdlExample", "WsdlExample\WsdlExample.csproj", "{697AAF39-9843-4AFC-8036-7E3C909C274C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpExample", "HttpExample\HttpExample.csproj", "{94625CF8-DDC6-4D03-BA09-64B16C95E388}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{697AAF39-9843-4AFC-8036-7E3C909C274C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{697AAF39-9843-4AFC-8036-7E3C909C274C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{697AAF39-9843-4AFC-8036-7E3C909C274C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{697AAF39-9843-4AFC-8036-7E3C909C274C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94625CF8-DDC6-4D03-BA09-64B16C95E388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94625CF8-DDC6-4D03-BA09-64B16C95E388}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94625CF8-DDC6-4D03-BA09-64B16C95E388}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94625CF8-DDC6-4D03-BA09-64B16C95E388}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

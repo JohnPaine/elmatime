@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a0dff3da-e661-4319-bff5-70b1bbce87ef" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://bpm-demo.impeltech.ru/API/Authorization?wsdl=wsdl0" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Authorization4.xsd" MetadataType="Schema" ID="e18bbed9-c05d-4704-9203-0220d40ecaf5" SourceId="1" SourceUrl="http://bpm-demo.impeltech.ru/API/Authorization?xsd=xsd2" />
+    <MetadataFile FileName="Authorization41.xsd" MetadataType="Schema" ID="af33d89b-d8eb-497d-81f3-3b7c3a378a4d" SourceId="1" SourceUrl="http://bpm-demo.impeltech.ru/API/Authorization?xsd=xsd1" />
+    <MetadataFile FileName="Authorization42.xsd" MetadataType="Schema" ID="bf109a26-70b7-448b-bc58-29c1e08ef0fc" SourceId="1" SourceUrl="http://bpm-demo.impeltech.ru/API/Authorization?xsd=xsd0" />
+    <MetadataFile FileName="Authorization43.xsd" MetadataType="Schema" ID="87aa076a-6cd9-41a3-9742-4b52c0899ed1" SourceId="1" SourceUrl="http://bpm-demo.impeltech.ru/API/Authorization?xsd=xsd3" />
+    <MetadataFile FileName="Authorization1.wsdl" MetadataType="Wsdl" ID="748b2f34-589f-4a0e-a65f-508bcc328cf7" SourceId="1" SourceUrl="http://bpm-demo.impeltech.ru/API/Authorization?wsdl=wsdl0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

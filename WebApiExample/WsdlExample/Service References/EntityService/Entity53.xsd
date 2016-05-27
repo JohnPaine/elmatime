@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.elma-bpm.ru/api/" elementFormDefault="qualified" targetNamespace="http://www.elma-bpm.ru/api/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://bpm-demo.impeltech.ru/API/Entity?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" />
+  <xs:element name="Load">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="typeuid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="entityid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="LoadResult" nillable="true" type="q1:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTree">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="typeuid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="entityid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="select" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadTreeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="LoadTreeResult" nillable="true" type="q2:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Count">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="typeuid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="eqlQuery" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="filterProviderUid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="filterProviderData" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="filter" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CountResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CountResult" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Query">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="typeuid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="eqlQuery" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sort" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="limit" type="xs:int" />
+        <xs:element minOccurs="0" name="offset" type="xs:int" />
+        <xs:element minOccurs="0" name="filterProviderUid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="filterProviderData" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="filter" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="QueryResult" nillable="true" type="q3:ArrayOfWebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryTree">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="typeuid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="eqlQuery" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="select" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sort" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="limit" type="xs:int" />
+        <xs:element minOccurs="0" name="offset" type="xs:int" />
+        <xs:element minOccurs="0" name="filterProviderUid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="filterProviderData" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="filter" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryTreeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="QueryTreeResult" nillable="true" type="q4:ArrayOfWebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Insert">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="typeuid" nillable="true" type="xs:string" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="entityData" nillable="true" type="q5:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="InsertResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Update">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="typeuid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="entityid" nillable="true" type="xs:string" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="entityData" nillable="true" type="q6:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

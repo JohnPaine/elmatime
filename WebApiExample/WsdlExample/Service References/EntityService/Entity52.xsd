@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="WebData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfWebDataItem" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WebData" nillable="true" type="tns:WebData" />
+  <xs:complexType name="ArrayOfWebDataItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WebDataItem" nillable="true" type="tns:WebDataItem" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWebDataItem" nillable="true" type="tns:ArrayOfWebDataItem" />
+  <xs:complexType name="WebDataItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Data" nillable="true" type="tns:WebData" />
+      <xs:element minOccurs="0" name="DataArray" nillable="true" type="tns:ArrayOfWebData" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WebDataItem" nillable="true" type="tns:WebDataItem" />
+  <xs:complexType name="ArrayOfWebData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WebData" nillable="true" type="tns:WebData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWebData" nillable="true" type="tns:ArrayOfWebData" />
+</xs:schema>

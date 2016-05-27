@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.elma-bpm.ru/api/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.elma-bpm.ru/api/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.elma-bpm.ru/api/Imports">
+      <xsd:import schemaLocation="http://bpm-demo.impeltech.ru/API/Authorization?xsd=xsd0" namespace="http://www.elma-bpm.ru/api/" />
+      <xsd:import schemaLocation="http://bpm-demo.impeltech.ru/API/Authorization?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" />
+      <xsd:import schemaLocation="http://bpm-demo.impeltech.ru/API/Authorization?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://bpm-demo.impeltech.ru/API/Authorization?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/EleWise.ELMA.API.Models" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAuthorizationService_Version_InputMessage">
+    <wsdl:part name="parameters" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_Version_OutputMessage">
+    <wsdl:part name="parameters" element="tns:VersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_Version_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" name="detail" element="q1:PublicServiceException" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_ApiVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:ApiVersion" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_ApiVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ApiVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_ApiVersion_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" name="detail" element="q2:PublicServiceException" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_ServerTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:ServerTime" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_ServerTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ServerTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_ServerTime_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" name="detail" element="q3:PublicServiceException" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_ServerTimeUTC_InputMessage">
+    <wsdl:part name="parameters" element="tns:ServerTimeUTC" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_ServerTimeUTC_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ServerTimeUTCResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_ServerTimeUTC_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" name="detail" element="q4:PublicServiceException" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_CheckToken_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckToken" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_CheckToken_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_CheckToken_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" name="detail" element="q5:PublicServiceException" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_LoginWithBasic_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginWithBasic" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_LoginWithBasic_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginWithBasicResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_LoginWithBasic_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" name="detail" element="q6:PublicServiceException" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_LoginWithUserName_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginWithUserName" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_LoginWithUserName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginWithUserNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_LoginWithUserName_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" name="detail" element="q7:PublicServiceException" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_LoginWithSSPI_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginWithSSPI" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_LoginWithSSPI_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginWithSSPIResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_LoginWithSSPI_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" name="detail" element="q8:PublicServiceException" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_TemporaryGuid_InputMessage">
+    <wsdl:part name="parameters" element="tns:TemporaryGuid" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_TemporaryGuid_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TemporaryGuidResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_TemporaryGuid_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" name="detail" element="q9:PublicServiceException" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_CheckPermissions_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckPermissions" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_CheckPermissions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAuthorizationService_CheckPermissions_PublicServiceExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" name="detail" element="q10:PublicServiceException" />
+  </wsdl:message>
+  <wsdl:portType name="IAuthorizationService">
+    <wsdl:documentation>
+      <summary>Сервис для авторизации пользователей</summary>
+    </wsdl:documentation>
+    <wsdl:operation name="Version">
+      <wsdl:documentation>
+        <summary>Получить текущую версию сервера</summary>
+        <returns>Текущая версия сервера</returns>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/Version" message="tns:IAuthorizationService_Version_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/VersionResponse" message="tns:IAuthorizationService_Version_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api//VersionPublicServiceExceptionFault" name="PublicServiceExceptionFault" message="tns:IAuthorizationService_Version_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ApiVersion">
+      <wsdl:documentation>
+        <summary>Получить текущую версию API сервера</summary>
+        <returns>Текущая версия API сервера</returns>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/ApiVersion" message="tns:IAuthorizationService_ApiVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/ApiVersionResponse" message="tns:IAuthorizationService_ApiVersion_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api//ApiVersionPublicServiceExceptionFault" name="PublicServiceExceptionFault" message="tns:IAuthorizationService_ApiVersion_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ServerTime">
+      <wsdl:documentation>
+        <summary>Получить текущее серверное время</summary>
+        <returns>Текущее серверное время в локальном формате</returns>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/ServerTime" message="tns:IAuthorizationService_ServerTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/ServerTimeResponse" message="tns:IAuthorizationService_ServerTime_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api//ServerTimePublicServiceExceptionFault" name="PublicServiceExceptionFault" message="tns:IAuthorizationService_ServerTime_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ServerTimeUTC">
+      <wsdl:documentation>
+        <summary>Получить текущее серверное время в формате UTC</summary>
+        <returns>Текущее серверное время в формате UTC</returns>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/ServerTimeUTC" message="tns:IAuthorizationService_ServerTimeUTC_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/ServerTimeUTCResponse" message="tns:IAuthorizationService_ServerTimeUTC_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api//ServerTimeUTCPublicServiceExceptionFault" name="PublicServiceExceptionFault" message="tns:IAuthorizationService_ServerTimeUTC_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckToken">
+      <wsdl:documentation>
+        <summary>Проверить токен авторизации и получить ИД пользователя</summary>
+        <returns>Результат авторизации</returns>
+        <param name="token">Токен авторизации</param>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/CheckToken" message="tns:IAuthorizationService_CheckToken_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/CheckTokenResponse" message="tns:IAuthorizationService_CheckToken_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api//CheckTokenPublicServiceExceptionFault" name="PublicServiceExceptionFault" message="tns:IAuthorizationService_CheckToken_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginWithBasic">
+      <wsdl:documentation>
+        <summary>Авторизовать пользователя по протоколу Basic</summary>
+        <returns>Результат авторизации</returns>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/LoginWithBasic" message="tns:IAuthorizationService_LoginWithBasic_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/LoginWithBasicResponse" message="tns:IAuthorizationService_LoginWithBasic_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api//LoginWithBasicPublicServiceExceptionFault" name="PublicServiceExceptionFault" message="tns:IAuthorizationService_LoginWithBasic_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginWithUserName">
+      <wsdl:documentation>
+        <summary>Авторизовать пользователя по логину и паролю</summary>
+        <returns>Результат авторизации</returns>
+        <param name="username">Логин пользователя</param>
+        <param name="password">Пароль пользователя</param>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/LoginWithUserName" message="tns:IAuthorizationService_LoginWithUserName_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/LoginWithUserNameResponse" message="tns:IAuthorizationService_LoginWithUserName_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api//LoginWithUserNamePublicServiceExceptionFault" name="PublicServiceExceptionFault" message="tns:IAuthorizationService_LoginWithUserName_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginWithSSPI">
+      <wsdl:documentation>
+        <summary>Авторизовать пользователя по тикету сквозной авторизации SSPI</summary>
+        <returns>Результат авторизации</returns>
+        <param name="ticket">Токен SSPI</param>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/LoginWithSSPI" message="tns:IAuthorizationService_LoginWithSSPI_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/LoginWithSSPIResponse" message="tns:IAuthorizationService_LoginWithSSPI_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api//LoginWithSSPIPublicServiceExceptionFault" name="PublicServiceExceptionFault" message="tns:IAuthorizationService_LoginWithSSPI_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TemporaryGuid">
+      <wsdl:documentation>
+        <summary>Получить временный токен авторизации. Можно использовать его в запросе как параметр TemporaryGuid</summary>
+        <returns>Временный токен авторизации</returns>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/TemporaryGuid" message="tns:IAuthorizationService_TemporaryGuid_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/TemporaryGuidResponse" message="tns:IAuthorizationService_TemporaryGuid_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api//TemporaryGuidPublicServiceExceptionFault" name="PublicServiceExceptionFault" message="tns:IAuthorizationService_TemporaryGuid_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckPermissions">
+      <wsdl:documentation>
+        <summary>Проверить привилегии</summary>
+        <returns>Результат проверки привилегий</returns>
+        <param name="requestList">Запрос на проверку привилегий</param>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/CheckPermissions" message="tns:IAuthorizationService_CheckPermissions_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.elma-bpm.ru/api/IAuthorizationService/CheckPermissionsResponse" message="tns:IAuthorizationService_CheckPermissions_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.elma-bpm.ru/api//CheckPermissionsPublicServiceExceptionFault" name="PublicServiceExceptionFault" message="tns:IAuthorizationService_CheckPermissions_PublicServiceExceptionFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding-ELMA_IAuthorizationService" type="tns:IAuthorizationService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Version">
+      <soap:operation soapAction="http://www.elma-bpm.ru/api/IAuthorizationService/Version" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="PublicServiceExceptionFault">
+        <soap:fault use="literal" name="PublicServiceExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ApiVersion">
+      <soap:operation soapAction="http://www.elma-bpm.ru/api/IAuthorizationService/ApiVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="PublicServiceExceptionFault">
+        <soap:fault use="literal" name="PublicServiceExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ServerTime">
+      <soap:operation soapAction="http://www.elma-bpm.ru/api/IAuthorizationService/ServerTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="PublicServiceExceptionFault">
+        <soap:fault use="literal" name="PublicServiceExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ServerTimeUTC">
+      <soap:operation soapAction="http://www.elma-bpm.ru/api/IAuthorizationService/ServerTimeUTC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="PublicServiceExceptionFault">
+        <soap:fault use="literal" name="PublicServiceExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CheckToken">
+      <soap:operation soapAction="http://www.elma-bpm.ru/api/IAuthorizationService/CheckToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="PublicServiceExceptionFault">
+        <soap:fault use="literal" name="PublicServiceExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="LoginWithBasic">
+      <soap:operation soapAction="http://www.elma-bpm.ru/api/IAuthorizationService/LoginWithBasic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="PublicServiceExceptionFault">
+        <soap:fault use="literal" name="PublicServiceExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="LoginWithUserName">
+      <soap:operation soapAction="http://www.elma-bpm.ru/api/IAuthorizationService/LoginWithUserName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="PublicServiceExceptionFault">
+        <soap:fault use="literal" name="PublicServiceExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="LoginWithSSPI">
+      <soap:operation soapAction="http://www.elma-bpm.ru/api/IAuthorizationService/LoginWithSSPI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="PublicServiceExceptionFault">
+        <soap:fault use="literal" name="PublicServiceExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TemporaryGuid">
+      <soap:operation soapAction="http://www.elma-bpm.ru/api/IAuthorizationService/TemporaryGuid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="PublicServiceExceptionFault">
+        <soap:fault use="literal" name="PublicServiceExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPermissions">
+      <soap:operation soapAction="http://www.elma-bpm.ru/api/IAuthorizationService/CheckPermissions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="PublicServiceExceptionFault">
+        <soap:fault use="literal" name="PublicServiceExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>

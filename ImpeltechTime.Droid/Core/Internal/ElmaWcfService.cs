@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
@@ -42,10 +43,6 @@ namespace ImpeltechTime.Droid.Core.Internal
             return AuthorizeUser(null, accName, pass);
         }
 
-        public bool LogoutUser(IElmaUser user) {
-            throw new NotImplementedException();
-        }
-
         public async Task<IEnumerable<IElmaTask>> GetTasksForUser(IElmaUser user) {
             if (null == user)
                 return null;
@@ -60,7 +57,18 @@ namespace ImpeltechTime.Droid.Core.Internal
             return await GetTasks(user, statuses);
         }
 
-        public static DateTime? GetDateTime(string dateString) {
+        public async Task<bool> SendWorkLogAsync (IElmaUser user, IElmaTask task) {
+            if (null == user || null == task)
+                return false;
+
+            // TODO: change
+            var t = Task.Run (() => SendWorkLog (user, task));
+
+            t.Wait ();
+            return t.Result;
+        }
+
+        private static DateTime? GetDateTime(string dateString) {
             try {
                 DateTime parsed;
                 if (DateTime.TryParse(dateString, out parsed))
@@ -73,7 +81,7 @@ namespace ImpeltechTime.Droid.Core.Internal
             }
         }
 
-        public static TimeSpan? GetTimeSpan(string dateString)
+        private static TimeSpan? GetTimeSpan(string dateString)
         {
             try
             {
@@ -93,22 +101,95 @@ namespace ImpeltechTime.Droid.Core.Internal
             }
         }
 
-        public static bool CompareGuids (string guidString, Guid toCompare) {
+        private static bool CompareGuids (string guidString, Guid toCompare) {
             Guid parsed;
             if (!Guid.TryParse (guidString, out parsed))
                 return false;
             return parsed == toCompare;
         }
 
-        public static bool CompareIDs (string idString, long toCompare) {
+        private static bool CompareIDs (string idString, long toCompare) {
             long parsed;
             if (!long.TryParse (idString, out parsed))
                 return false;
             return parsed == toCompare;
         }
 
-        private async Task<List<IElmaWorkLog>> GetWorklogsForTask(IElmaUser user, long taskId)
-        {
+        private static WebData CreateTaskData (IElmaTask task) {
+            var data = new WebData {Items = new WebDataItem[4]};
+
+            data.Items[0] = new WebDataItem {Name = "Id", Value = task.Id.ToString()};
+            data.Items[1] = new WebDataItem {Name = "TypeUid", Value = task.TypeUid};
+            data.Items[2] = new WebDataItem {Name = "Uid", Value = task.Uid.ToString()};
+            data.Items[3] = new WebDataItem {Name = "Name", Value = task.Subject};
+
+            return data;
+        }
+
+        private static WebData CreateUserData (IElmaUser user) {
+            var data = new WebData { Items = new WebDataItem[4] };
+
+            data.Items[0] = new WebDataItem { Name = "Id", Value = user.Id.ToString() };
+            data.Items[1] = new WebDataItem { Name = "TypeUid", Value = user.TypeUid};
+            data.Items[2] = new WebDataItem { Name = "Uid", Value = user.Uid.ToString() };
+            data.Items[3] = new WebDataItem { Name = "Name", Value = user.FullName };
+
+            return data;
+        }
+
+        private static WebData CreateWorkLogData (IElmaUser user, IElmaTask task) {
+            var data = new WebData {Items = new WebDataItem[12]};
+
+            data.Items[0] = new WebDataItem { Name = "Id", Value = null };
+            data.Items[1] = new WebDataItem { Name = "TypeUid", Value = ElmaWorkLog.WorkLogTypeUid };
+            data.Items[2] = new WebDataItem { Name = "Uid", Value = null };
+            data.Items[3] = new WebDataItem { Name = "CreationDate", Value = null };
+            // TODO: change!!!
+            if (task.UnaccountedWorkLog.WorkTime?.TotalSeconds != null)
+                data.Items[4] = new WebDataItem { Name = "WorkMinutes", Value = Math.Round((decimal)task.UnaccountedWorkLog.WorkTime?.TotalSeconds).ToString(CultureInfo.CurrentCulture) };
+            else
+                data.Items[4] = new WebDataItem { Name = "WorkMinutes", Value = "" };
+            data.Items[5] = new WebDataItem { Name = "StartDate", Value = task.UnaccountedWorkLog.StartDate?.ToString("G") };
+            data.Items[6] = new WebDataItem { Name = "Comment", Value = task.UnaccountedWorkLog.Comment };
+            data.Items[7] = new WebDataItem { Name = "CreationAuthor", Value = null, Data = CreateUserData (user)};
+            data.Items[8] = new WebDataItem { Name = "Worker", Value = null, Data = CreateUserData (user)};
+            data.Items[9] = new WebDataItem { Name = "TaskBase", Value = null, Data = CreateTaskData (task)};
+            // TODO: change!!!
+            data.Items[10] = new WebDataItem { Name = "Status", Value = "1" };
+            data.Items[11] = new WebDataItem { Name = "WorkLogItem", Value = null };
+
+            return data;
+        }
+
+        private bool SendWorkLog (IElmaUser user, IElmaTask task) {
+            if (!CheckToken() && null == AuthorizeUser(user))
+                return false;
+
+            try {
+                var entityService = _entityServiceFactory.CreateChannel ();
+
+                using (new OperationContextScope (entityService)) {
+                    OperationContext.Current.OutgoingMessageHeaders.Add(MessageHeader.CreateHeader("AuthToken", "",
+                        AuthToken.ToString()));
+                    OperationContext.Current.OutgoingMessageHeaders.Add(MessageHeader.CreateHeader("SessionToken", "",
+                        SessionToken));
+
+                    entityService.Insert (ElmaWorkLog.WorkLogTypeUid, CreateWorkLogData (user, task));
+                }
+            }
+            catch (FaultException<PublicServiceException> exception) {
+                Log.Error ("SendWorkLog, FaultException", exception.Message);
+                return false;
+            }
+            catch (Exception exception) {
+                Log.Error ("SendWorkLog, Exception", exception.Message);
+                return false;
+            }
+
+            return true;
+        }
+
+        private async Task<List<IElmaWorkLog>> GetWorklogsForTask(IElmaUser user, long taskId) {
             WebData[] webData;
             if (null == user || (webData = await QueryData(ElmaWorkLog.WorkLogTypeUid, "", "", 200, 1, "", "", "")) == null)
                 return null;
@@ -149,8 +230,7 @@ namespace ImpeltechTime.Droid.Core.Internal
             try {
                 using (new OperationContextScope(entityService)) {
                     OperationContext.Current.OutgoingMessageHeaders.Add(MessageHeader.CreateHeader("AuthToken", "",
-                        AuthToken.ToString
-                            ()));
+                        AuthToken.ToString()));
                     OperationContext.Current.OutgoingMessageHeaders.Add(MessageHeader.CreateHeader("SessionToken", "",
                         SessionToken));
 

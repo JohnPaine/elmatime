@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.elma-bpm.ru/api/Tasks" elementFormDefault="qualified" targetNamespace="http://www.elma-bpm.ru/api/Tasks" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://bpm-demo.impeltech.ru/API/Tasks?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" />
+  <xs:import schemaLocation="http://bpm-demo.impeltech.ru/API/Tasks?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" />
+  <xs:element name="Create">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="data" nillable="true" type="q1:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="CreateResult" nillable="true" type="q2:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Services.Public" name="PublicServiceExceptionFault" nillable="true" type="q3:PublicServiceException" />
+  <xs:element name="Reopen">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="data" nillable="true" type="q4:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReopenResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="ReopenResult" nillable="true" type="q5:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddComment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="data" nillable="true" type="q6:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddCommentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="AddCommentResult" nillable="true" type="q7:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Complete">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="data" nillable="true" type="q8:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CompleteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="CompleteResult" nillable="true" type="q9:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Incomplete">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="data" nillable="true" type="q10:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IncompleteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="IncompleteResult" nillable="true" type="q11:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartWork">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="data" nillable="true" type="q12:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartWorkResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="StartWorkResult" nillable="true" type="q13:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MarkRead">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="data" nillable="true" type="q14:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MarkReadResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="MarkReadResult" nillable="true" type="q15:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Redirect">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="data" nillable="true" type="q16:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RedirectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="RedirectResult" nillable="true" type="q17:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeEndDate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="data" nillable="true" type="q18:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeEndDateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="ChangeEndDateResult" nillable="true" type="q19:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ControlComplete">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="data" nillable="true" type="q20:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ControlCompleteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="ControlCompleteResult" nillable="true" type="q21:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeControl">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="data" nillable="true" type="q22:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeControlResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="ChangeControlResult" nillable="true" type="q23:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Close">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="data" nillable="true" type="q24:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CloseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="CloseResult" nillable="true" type="q25:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddQuestion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="data" nillable="true" type="q26:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddQuestionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="AddQuestionResult" nillable="true" type="q27:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AnswerQuestion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="data" nillable="true" type="q28:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AnswerQuestionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="AnswerQuestionResult" nillable="true" type="q29:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConfirmApproval">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="data" nillable="true" type="q30:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConfirmApprovalResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="ConfirmApprovalResult" nillable="true" type="q31:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RefuseApproval">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="data" nillable="true" type="q32:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RefuseApprovalResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="RefuseApprovalResult" nillable="true" type="q33:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ApprovementStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="data" nillable="true" type="q34:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ApprovementStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/EleWise.ELMA.Common.Models" minOccurs="0" name="ApprovementStatusResult" nillable="true" type="q35:WebData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

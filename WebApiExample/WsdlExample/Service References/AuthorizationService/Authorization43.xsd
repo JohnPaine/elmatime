@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/EleWise.ELMA.API.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/EleWise.ELMA.API.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://bpm-demo.impeltech.ru/API/Authorization?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ApiVersion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Services" nillable="true" type="tns:ArrayOfApiService" />
+      <xs:element minOccurs="0" name="Version" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApiVersion" nillable="true" type="tns:ApiVersion" />
+  <xs:complexType name="ArrayOfApiService">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ApiService" nillable="true" type="tns:ApiService" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfApiService" nillable="true" type="tns:ArrayOfApiService" />
+  <xs:complexType name="ApiService">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Methods" nillable="true" type="tns:ArrayOfApiMethod" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApiService" nillable="true" type="tns:ApiService" />
+  <xs:complexType name="ArrayOfApiMethod">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ApiMethod" nillable="true" type="tns:ApiMethod" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfApiMethod" nillable="true" type="tns:ArrayOfApiMethod" />
+  <xs:complexType name="ApiMethod">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Version" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApiMethod" nillable="true" type="tns:ApiMethod" />
+  <xs:complexType name="Auth">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AuthToken" type="ser:guid" />
+      <xs:element minOccurs="0" name="CurrentUserId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Lang" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SessionToken" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Auth" nillable="true" type="tns:Auth" />
+  <xs:complexType name="ArrayOfCheckPermissionRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CheckPermissionRequest" nillable="true" type="tns:CheckPermissionRequest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCheckPermissionRequest" nillable="true" type="tns:ArrayOfCheckPermissionRequest" />
+  <xs:complexType name="CheckPermissionRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+      <xs:element minOccurs="0" name="ObjectId" type="xs:long" />
+      <xs:element minOccurs="0" name="TypeUid" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CheckPermissionRequest" nillable="true" type="tns:CheckPermissionRequest" />
+  <xs:complexType name="ArrayOfCheckPermissionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CheckPermissionResponse" nillable="true" type="tns:CheckPermissionResponse" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCheckPermissionResponse" nillable="true" type="tns:ArrayOfCheckPermissionResponse" />
+  <xs:complexType name="CheckPermissionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Allow" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Id" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CheckPermissionResponse" nillable="true" type="tns:CheckPermissionResponse" />
+</xs:schema>

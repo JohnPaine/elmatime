@@ -25,6 +25,7 @@ namespace ImpeltechTime.Droid.Core.Model
         TaskLoggingState LoggingState { get; set; }
         
         List<IElmaWorkLog> WorkLogs { get; set; }
+        IElmaWorkLog UnaccountedWorkLog { get; set; }
         void AddWorkingTime (DateTime startDate, TimeSpan factWorktime, string comment);
         void AddUnaccountedTime (TimeSpan? unaccounted);
 
@@ -37,6 +38,6 @@ namespace ImpeltechTime.Droid.Core.Model
 
         TimeSpan? PlannedWorkTime { get; }
         TimeSpan? FactWorkTime { get; }
-        TimeSpan? UnaccountedWorkTime { get; }
+        TimeSpan? UnaccountedWorkTime { get; set; }
     }
 }
