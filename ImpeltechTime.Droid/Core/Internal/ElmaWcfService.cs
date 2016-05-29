@@ -40,10 +40,11 @@ namespace ImpeltechTime.Droid.Core.Internal
         private string SessionToken { get; set; }
 
         public IElmaUser LoginUser(string accName, string pass) {
-            return AuthorizeUser(null, accName, pass);
+            return AuthorizeUser (null, accName, pass);
+            //            return AuthorizeUser(null, accName, pass);
         }
 
-        public async Task<IEnumerable<IElmaTask>> GetTasksForUser(IElmaUser user) {
+        public IEnumerable<IElmaTask> GetTasksForUser(IElmaUser user) {
             if (null == user)
                 return null;
 
@@ -52,12 +53,12 @@ namespace ImpeltechTime.Droid.Core.Internal
 
             // TODO: can status change?
             // TODO: what statuses are possible??
-            TaskStatus[] statuses = {TaskStatus.NewOrder, TaskStatus.InProgress};
+            TaskStatus[] statuses = { TaskStatus.NewOrder, TaskStatus.InProgress };
 
-            return await GetTasks(user, statuses);
+            return GetTasks(user, statuses);
         }
 
-        public async Task<bool> SendWorkLogAsync (IElmaUser user, IElmaTask task) {
+        public bool SendWorkLogAsync (IElmaUser user, IElmaTask task) {
             if (null == user || null == task)
                 return false;
 
@@ -189,9 +190,9 @@ namespace ImpeltechTime.Droid.Core.Internal
             return true;
         }
 
-        private async Task<List<IElmaWorkLog>> GetWorklogsForTask(IElmaUser user, long taskId) {
+        private IEnumerable<IElmaWorkLog> GetWorklogsForTask(IElmaUser user, long taskId) {
             WebData[] webData;
-            if (null == user || (webData = await QueryData(ElmaWorkLog.WorkLogTypeUid, "", "", 200, 1, "", "", "")) == null)
+            if (null == user || (webData = QueryData(ElmaWorkLog.WorkLogTypeUid, "", "", 200, 1, "", "", "")) == null)
                 return null;
 
             // TODO: ask Kotov about possible difference between CreationAuthor and Worker in WorkLog entity!!!!
@@ -205,9 +206,9 @@ namespace ImpeltechTime.Droid.Core.Internal
                             });
         }
 
-        private async Task<List<IElmaTask>> GetTasks(IElmaUser user, IEnumerable<TaskStatus> statuses) {
+        private IEnumerable<IElmaTask> GetTasks(IElmaUser user, IEnumerable<TaskStatus> statuses) {
             WebData[] webData;
-            if (null == user || (webData = await QueryData(ElmaTask.TaskTypeUid, "", "", 200, 1, "", "", "")) == null)
+            if (null == user || (webData = QueryData(ElmaTask.TaskTypeUid, "", "", 200, 1, "", "", "")) == null)
                 return null;
 
             return new List<IElmaTask> (from data in webData
@@ -219,11 +220,11 @@ namespace ImpeltechTime.Droid.Core.Internal
                                StartDateTime = GetDateTime(data.Items[9].Value),
                                EndDateTime = GetDateTime(data.Items[10].Value),
                                PlannedWorkTime = GetTimeSpan(data.Items[28].Value),
-                               WorkLogs = GetWorklogsForTask(user, long.Parse(data.Items[0].Value)).Result
+                               WorkLogs = GetWorklogsForTask(user, long.Parse(data.Items[0].Value)).ToList ()
                            });
         }
 
-        private async Task<WebData[]> QueryData(string typeuid, string eqlQuery, string sort, int limit, int offset,
+        private WebData[] QueryData(string typeuid, string eqlQuery, string sort, int limit, int offset,
             string filterProviderUid, string filterProviderData, string filter) {
             var entityService = _entityServiceFactory.CreateChannel();
 

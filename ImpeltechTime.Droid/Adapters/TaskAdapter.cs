@@ -29,7 +29,7 @@ namespace ImpeltechTime.Droid.Adapters
             _context = context;
             _taskProvider = taskProvider;
             _date = date;
-            _tasks = _taskProvider.GetTasksForDate (_date).Result.ToList ();
+            _tasks = _taskProvider.GetTasksForDate (_date).ToList ();
         }
 
         public override int Count => _tasks.Count;
@@ -51,7 +51,7 @@ namespace ImpeltechTime.Droid.Adapters
         }
 
         public override View GetView (int position, View convertView, ViewGroup parent) {
-            _tasks = _taskProvider.GetTasksForDate (_date).Result.ToList ();
+            _tasks = _taskProvider.GetTasksForDate (_date).ToList ();
             var task = _tasks[position];
             var loggingState = task.LoggingState;
             var image = loggingState == TaskLoggingState.Logging

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
+using System.Threading;
 using System.Threading.Tasks;
-using System.Timers;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -15,6 +15,7 @@ using ImpeltechTime.Droid.Core.Model.Providers;
 using ImpeltechTime.Droid.Core.Providers;
 using ImpeltechTime.Droid.Utility;
 using Microsoft.Practices.Unity;
+using Timer = System.Timers.Timer;
 
 namespace ImpeltechTime.Droid
 {
@@ -22,76 +23,113 @@ namespace ImpeltechTime.Droid
     public class TaskListActivity : Activity
     {
         private readonly Dictionary<int, TaskAdapter> _taskAdapters = new Dictionary<int, TaskAdapter> ();
+
+        // Views
+        private Chronometer _chronometer;
         private DateTime _currentDate;
         private TextView _currentDateTextView;
-        private Button _nextDateButton;
-        private Button _previousDateButton;
         private Button _menuButton;
-        private Button _sendAllWorklogsButton;
+        private Button _nextDateButton;
         private TextView _plannedWorklogTextView;
+        private Button _previousDateButton;
+        private Button _sendAllWorklogsButton;
         private TextView _sentWorklogTextView;
+        private TaskTimer _taskExecutionTimer;
         private ListView _tasksListView;
-        private TaskTimer _timer;
-        private Chronometer _chronometer;
+
+        // Providers
         private IElmaTaskProvider _taskProvider;
+        
+        // Instances
+        private IElmaUser _user;
 
-        private event EventHandler OnCreateHandler;
+        private static async Task<IElmaUser> LoginAsync (string name, string pass) {
+            return await Task.Run (() => {
+                var userProvider =
+                    App.Container.Resolve(typeof(ElmaUserProvider), "ElmaUserProvider") as ElmaUserProvider;
+                var user = userProvider?.LoginUser(name, pass);
+                if (null == user)
+                    Log.Error("TaskListActivity", "Error getting user instance! Returning to Login activity!");
+                return user;
+            });
+        }
 
-        protected override void OnCreate (Bundle savedInstanceState) {
+        private async Task<IEnumerable<IElmaTask>> GetTaskListAsync() {
+            return await Task.Run(() => _taskProvider.GetTasksForDate(_currentDate));
+        }
+
+        private async Task CurrentDateChanged () {
+            var tasks = await GetTaskListAsync();
+
+            var elmaTasks = tasks as IList<IElmaTask> ?? tasks;
+            var adapter = new TaskAdapter(this, _currentDate, _taskProvider);
+
+            _tasksListView.Adapter = adapter;
+            _currentDateTextView.Text = _currentDate.Date.ToShortDateString();
+            UpdateWorklogTimeDisplays(elmaTasks);
+        }
+
+        private async Task GetInstances (string name, string pass) {
+            _user = await LoginAsync(name, pass);
+            if (null == _user) {
+                Log.Error("TaskListActivity, GetInstances", "Authorization failed - login/pass invalid or connection is lost!");
+                var intent = new Intent(this, typeof(LoginActivity));
+                intent.PutExtra("user_invalid", true);
+                StartActivity(intent);
+                Finish();
+            }
+
+            _taskProvider =
+                App.Container.Resolve<ElmaTaskProvider>(new ParameterOverrides {
+                    {"user", _user},
+                    {"timer", _taskExecutionTimer}
+                });
+            _taskProvider.OnTasksChangedEvent += delegate { _tasksListView.InvalidateViews(); };
+        }
+
+        protected override async void OnCreate (Bundle savedInstanceState) {
             base.OnCreate (savedInstanceState);
 
             SetContentView (Resource.Layout.TaskList);
 
-            // TODO: add some "loading sign" while this activity is loading
+            // TODO: show some "loading sign" while tasks are being updated
 
             Log.Info ("TaskListActivity", "Starting");
+            Log.Info ("DEBUG TaskListActivity OnCreate", $"ThreadID - {Thread.CurrentThread.ManagedThreadId}");
 
             var creds = Intent.GetStringArrayExtra ("cred");
             if (null == creds || creds.Length != 2) {
-                Log.Error("TaskListActivity", "Error getting credentials! Finishing...");
-                Finish();
-                return;
-            }
-
-            Log.Info ("TaskListActivity", $"creds[0]={creds[0]}, creds[1]={creds[1]}");            
-
-            var userProvider = App.Container.Resolve (typeof (ElmaUserProvider), "ElmaUserProvider") as ElmaUserProvider;
-            var user = userProvider?.LoginUser (creds[0], creds[1]);
-            if (null == user) {
-                Log.Error("TaskListActivity", "Error getting user instance! Returning to Login activity!");
-                var intent = new Intent (this, typeof (LoginActivity));
-                intent.PutExtra ("user_invalid", true);
-                StartActivity (intent);
+                Log.Error ("TaskListActivity", "Error getting credentials! Finishing...");
                 Finish ();
                 return;
             }
+
+            Log.Info ("TaskListActivity", $"c={creds[0]}, creds[1]={creds[1]}");
+
             SetupViews ();
-            // TODO: check correctness!!!
-            // this is probably a bad architecture sign, passing arguments for di container to resolve an instance...
-            // but I just don't know for now how to make it right.
-            // _taskProvider = App.Container.Resolve<ElmaTaskProvider> (new OrderedParametersOverride(new object[] {user, _timer}));
-            _taskProvider =
-                App.Container.Resolve<ElmaTaskProvider> (new ParameterOverrides {{"user", user}, {"timer", _timer}});
 
-            _taskProvider.OnTasksChangedEvent += delegate {
-                _tasksListView.InvalidateViews ();
-            };
+            await GetInstances (creds[0], creds[1]);
 
-            OnCreateHandler += async (sender, e) => { await ChangeCurrentDate (DateTime.Now); };
+            _currentDate = DateTime.Now;
+            await CurrentDateChanged ();
 
-            OnCreateHandler?.Invoke (this, EventArgs.Empty);
-
-            Log.Info("TaskListActivity", "All OK");
+            Log.Info ("TaskListActivity", "All OK");
         }
 
         private void SetupViews () {
             FindViews ();
-            SetupTimer ();
+            SetupTimers ();
             SetupMenu ();
             SetupButtons ();
 
-            _previousDateButton.Click += async (sender, e) => { await ChangeCurrentDate (_currentDate.AddDays (-1)); };
-            _nextDateButton.Click += async (sender, e) => { await ChangeCurrentDate (_currentDate.AddDays (1)); };
+            _previousDateButton.Click += async delegate {
+                _currentDate = _currentDate.AddDays (-1);
+                await CurrentDateChanged();
+            };
+            _nextDateButton.Click += async delegate {
+                _currentDate = _currentDate.AddDays (1);
+                await CurrentDateChanged();
+            };
         }
 
         private void FindViews () {
@@ -120,73 +158,58 @@ namespace ImpeltechTime.Droid
 
         private void SetupButtons () {
             // TODO: implement sending worklogs for tasks of current date or for all at once??
-            _sendAllWorklogsButton.Click += async delegate {
-                var tasks = await _taskProvider.GetTasksForDate (_currentDate);
+            _sendAllWorklogsButton.Click += delegate {
+                var tasks = _taskProvider.GetTasksForDate (_currentDate);
                 if (null == tasks)
                     return;
                 // TODO: add some sign for user about sending and change @sendStatusImageButton image on success or fail
                 foreach (var task in tasks)
-                    _taskProvider.SendTaskWorklog (task);                
+                    _taskProvider.SendTaskWorklog (task);
             };
         }
 
         private void SetupMenu () {
             _menuButton.Click += (s, arg) => {
-                var menu = new PopupMenu(this, _menuButton);
+                var menu = new PopupMenu (this, _menuButton);
 
-                menu.Inflate(Resource.Layout.main_menu);
+                menu.Inflate (Resource.Layout.main_menu);
 
-                menu.MenuItemClick += (s1, arg1) => {
-                    if (arg1.Item.ItemId == Resource.Id.logoutItem) {
-                        Log.Error("TaskListActivity", "Logging out!");
-                        var intent = new Intent(this, typeof(LoginActivity));
-                        intent.PutExtra("user_invalid", true);
-                        StartActivity(intent);
-                        Finish();
+                menu.MenuItemClick += async (s1, arg1) => {
+                    switch (arg1.Item.ItemId) {
+                        case Resource.Id.logoutItem: {
+                            Log.Error ("TaskListActivity", "Logging out!");
+                            var intent = new Intent (this, typeof (LoginActivity));
+                            intent.PutExtra ("user_invalid", true);
+                            StartActivity (intent);
+                            Finish ();
+                        }
+                            break;
+                        case Resource.Id.reloadTasksItem: {
+                            Log.Error("TaskListActivity", "Reloadding tasks!");
+                            _taskProvider.UpdateNeeded = true;
+                            await CurrentDateChanged ();
+                        }
+                            break;
                     }
                 };
 
-                menu.Show();
+                menu.Show ();
             };
         }
 
-        private void SetupTimer () {
+        private void SetupTimers () {
             _chronometer.ChronometerTick += delegate {
                 var time = SystemClock.ElapsedRealtime () - _chronometer.Base;
-                var h = (int)(time / 3600000);
-                var m = (int)(time - h * 3600000) / 60000;
-                var s = (int)(time - h * 3600000 - m * 60000) / 1000;
+                var h = (int) (time/3600000);
+                var m = (int) (time - h*3600000)/60000;
+                var s = (int) (time - h*3600000 - m*60000)/1000;
                 var hh = h < 10 ? "0" + h : h + "";
                 var mm = m < 10 ? "0" + m : m + "";
                 var ss = s < 10 ? "0" + s : s + "";
                 _chronometer.Text = hh + ":" + mm + ":" + ss;
             };
 
-            _timer = new TaskTimer (_chronometer);
-
-        }
-
-        private async Task<bool> ChangeCurrentDate (DateTime date) {
-            _currentDate = date;
-            _currentDateTextView.Text = date.Date.ToShortDateString ();
-            return await ChangeTaskListForDate (date);
-        }
-
-        private async Task<bool> ChangeTaskListForDate (DateTime date) {
-            var tasks = await _taskProvider.GetTasksForDate (date);
-            if (null == tasks) {
-                new AlertDialog.Builder (this).SetTitle ("Error")
-                                                .SetMessage ("Error getting tasks for date!")
-                                                .Show ();
-                return false;
-            }
-            var elmaTasks = tasks as IList<IElmaTask> ?? tasks.ToList ();
-            var adapter = new TaskAdapter (this, date, _taskProvider);
-
-            _tasksListView.Adapter = adapter;
-            UpdateWorklogTimeDisplays (elmaTasks);
-
-            return true;
+            _taskExecutionTimer = new TaskTimer (_chronometer);
         }
     }
 }

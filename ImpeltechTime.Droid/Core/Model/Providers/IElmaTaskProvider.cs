@@ -7,10 +7,12 @@ namespace ImpeltechTime.Droid.Core.Model.Providers
 {
     public interface IElmaTaskProvider
     {
-        Task<IEnumerable<IElmaTask>> GetAllTasks();
-        Task<IEnumerable<IElmaTask>> GetTasksForDate(DateTime dateTime);
-        Task<IElmaTask> TaskById(long id);
-        Task<IElmaTask> TaskByUid(Guid uid);
+        IEnumerable<IElmaTask> GetAllTasks();
+        IEnumerable<IElmaTask> GetTasksForDate(DateTime dateTime);
+        IElmaTask TaskById(long id);
+        IElmaTask TaskByUid(Guid uid);
+
+        bool UpdateNeeded { get; set; }
 
         /// <summary>
         /// Starts task execution and pauses previously executing task if there were any

@@ -1,4 +1,6 @@
-﻿namespace ImpeltechTime.Droid.Core.Model.Providers
+﻿using System.Threading.Tasks;
+
+namespace ImpeltechTime.Droid.Core.Model.Providers
 {
     public interface IElmaUserProvider
     {

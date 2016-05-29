@@ -3,5 +3,9 @@
     <item
         android:id="@+id/logoutItem"
         android:title="Logout"
+        android:backgroundTint="#fff001" />
+    <item
+        android:id="@+id/reloadTasksItem"
+        android:title="Reload tasks"
         android:backgroundTint="#fa8a34" />
 </menu>

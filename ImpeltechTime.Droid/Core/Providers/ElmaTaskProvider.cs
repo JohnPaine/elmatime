@@ -28,34 +28,34 @@ namespace ImpeltechTime.Droid.Core.Providers
             UpdateNeeded = true;
         }
 
-        public async Task<IEnumerable<IElmaTask>> GetAllTasks () {
+        public IEnumerable<IElmaTask> GetAllTasks () {
             if (!UpdateNeeded)
                 return _allTasks;
-            _allTasks = (List<IElmaTask>) await _wcfService.GetTasksForUser (_user);
+            _allTasks = _wcfService.GetTasksForUser(_user).ToList ();
             UpdateNeeded = false;
             return _allTasks;
         }
 
-        public async Task<IEnumerable<IElmaTask>> GetTasksForDate (DateTime dateTime) {
-            return (from task in await GetAllTasks ()
+        public IEnumerable<IElmaTask> GetTasksForDate (DateTime dateTime) {
+            return (from task in GetAllTasks ()
                     where task.StartDateTime < dateTime && task.EndDateTime > dateTime
                     select task).ToList ();
         }
 
-        public async Task<IElmaTask> TaskById (long id) {
-            return (from task in await GetAllTasks ()
+        public IElmaTask TaskById (long id) {
+            return (from task in GetAllTasks ()
                     where task.Id == id
                     select task).FirstOrDefault ();
         }
 
-        public async Task<IElmaTask> TaskByUid (Guid uid) {
-            return (from task in await GetAllTasks ()
+        public IElmaTask TaskByUid (Guid uid) {
+            return (from task in GetAllTasks ()
                     where task.Uid == uid
                     select task).FirstOrDefault ();
         }
 
         public bool StartTaskExecution(IElmaTask task, bool emitChanged = true) {
-            foreach (var t in GetAllTasks().Result.Where (t => t.Id != task.Id)) {
+            foreach (var t in GetAllTasks().Where (t => t.Id != task.Id)) {
                 PauseTaskExecution(t, false);
             }
 
@@ -102,7 +102,7 @@ namespace ImpeltechTime.Droid.Core.Providers
                     task.UnaccountedWorkLog.WorkTime += task.UnaccountedWorkTime.Value;
             }
 
-            if (_wcfService.SendWorkLogAsync (_user, task).Result == false) {
+            if (_wcfService.SendWorkLogAsync (_user, task) == false) {
                 // TODO: add some message for user about that and change green cloud to red cross or smth..
                 OnTasksChangedEvent?.Invoke(this, EventArgs.Empty);
 

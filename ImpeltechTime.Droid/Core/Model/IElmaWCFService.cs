@@ -7,8 +7,8 @@ namespace ImpeltechTime.Droid.Core.Model
     {
         IElmaUser LoginUser (string accName, string pass);
 
-        Task<IEnumerable<IElmaTask>> GetTasksForUser (IElmaUser user);
+        IEnumerable<IElmaTask> GetTasksForUser (IElmaUser user);
 
-        Task<bool> SendWorkLogAsync(IElmaUser user, IElmaTask task);
+        bool SendWorkLogAsync(IElmaUser user, IElmaTask task);
     }
 }
