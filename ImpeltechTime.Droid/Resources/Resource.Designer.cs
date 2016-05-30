@@ -73,76 +73,43 @@ namespace ImpeltechTime.Droid
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int Checked_Checkbox_2_104 = 2130837504;
+			public const int Cloud_Checked_48 = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int Checked_Checkbox_2_48 = 2130837505;
+			public const int Cloud_Checked_80 = 2130837505;
 			
 			// aapt resource value: 0x7f020002
-			public const int Checked_Checkbox_2_96 = 2130837506;
+			public const int Cloud_Checked_96 = 2130837506;
 			
 			// aapt resource value: 0x7f020003
-			public const int Checked_Checkbox_52 = 2130837507;
+			public const int Collapse_Arrow_48_left = 2130837507;
 			
 			// aapt resource value: 0x7f020004
-			public const int Checkmark_104 = 2130837508;
+			public const int Collapse_Arrow_48_right = 2130837508;
 			
 			// aapt resource value: 0x7f020005
-			public const int Cloud_Checked_48 = 2130837509;
+			public const int Error_80 = 2130837509;
 			
 			// aapt resource value: 0x7f020006
-			public const int Cloud_Checked_80 = 2130837510;
+			public const int ic_launcher = 2130837510;
 			
 			// aapt resource value: 0x7f020007
-			public const int Cloud_Checked_96 = 2130837511;
+			public const int Icon = 2130837511;
 			
 			// aapt resource value: 0x7f020008
-			public const int Collapse_Arrow_48_down = 2130837512;
+			public const int login_screen_gradient_shape = 2130837512;
 			
 			// aapt resource value: 0x7f020009
-			public const int Collapse_Arrow_48_left = 2130837513;
+			public const int Menu_2_48 = 2130837513;
 			
 			// aapt resource value: 0x7f02000a
-			public const int Collapse_Arrow_48_right = 2130837514;
+			public const int Menu_2_48_2 = 2130837514;
 			
 			// aapt resource value: 0x7f02000b
-			public const int Collapse_Arrow_48_up = 2130837515;
+			public const int Menu_2_96 = 2130837515;
 			
 			// aapt resource value: 0x7f02000c
-			public const int Error_80 = 2130837516;
-			
-			// aapt resource value: 0x7f02000d
-			public const int ic_launcher = 2130837517;
-			
-			// aapt resource value: 0x7f02000e
-			public const int Icon = 2130837518;
-			
-			// aapt resource value: 0x7f02000f
-			public const int icon_pause = 2130837519;
-			
-			// aapt resource value: 0x7f020010
-			public const int icon_play = 2130837520;
-			
-			// aapt resource value: 0x7f020011
-			public const int login_screen_gradient_shape = 2130837521;
-			
-			// aapt resource value: 0x7f020012
-			public const int Menu_2_48 = 2130837522;
-			
-			// aapt resource value: 0x7f020013
-			public const int Menu_2_48_2 = 2130837523;
-			
-			// aapt resource value: 0x7f020014
-			public const int Menu_2_96 = 2130837524;
-			
-			// aapt resource value: 0x7f020015
-			public const int Menu_2_96_2 = 2130837525;
-			
-			// aapt resource value: 0x7f020016
-			public const int pause = 2130837526;
-			
-			// aapt resource value: 0x7f020017
-			public const int play_arrow_48px = 2130837527;
+			public const int Menu_2_96_2 = 2130837516;
 			
 			static Drawable()
 			{
@@ -157,107 +124,110 @@ namespace ImpeltechTime.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f070005
-			public const int LoginButton = 2131165189;
-			
-			// aapt resource value: 0x7f070002
-			public const int appNameTextView = 2131165186;
-			
-			// aapt resource value: 0x7f07001a
-			public const int contentLayout = 2131165210;
-			
-			// aapt resource value: 0x7f07000b
-			public const int controlPanelLayout = 2131165195;
-			
-			// aapt resource value: 0x7f07000c
-			public const int currentDateTextView = 2131165196;
-			
-			// aapt resource value: 0x7f070013
-			public const int footerLayout = 2131165203;
-			
-			// aapt resource value: 0x7f070019
-			public const int fullContentLayout = 2131165209;
-			
-			// aapt resource value: 0x7f070008
-			public const int headerLayout = 2131165192;
-			
-			// aapt resource value: 0x7f070012
-			public const int listLayout = 2131165202;
+			// aapt resource value: 0x7f070006
+			public const int LoginButton = 2131165190;
 			
 			// aapt resource value: 0x7f070003
-			public const int loginEditText = 2131165187;
-			
-			// aapt resource value: 0x7f070001
-			public const int loginLayout = 2131165185;
-			
-			// aapt resource value: 0x7f070006
-			public const int logoutItem = 2131165190;
-			
-			// aapt resource value: 0x7f070000
-			public const int mainLayout = 2131165184;
-			
-			// aapt resource value: 0x7f07000a
-			public const int menuButton = 2131165194;
-			
-			// aapt resource value: 0x7f07000e
-			public const int nextDateButton = 2131165198;
-			
-			// aapt resource value: 0x7f070004
-			public const int passwordEditText = 2131165188;
-			
-			// aapt resource value: 0x7f070010
-			public const int plannedWorklogTextView = 2131165200;
-			
-			// aapt resource value: 0x7f07000d
-			public const int previousDateButton = 2131165197;
-			
-			// aapt resource value: 0x7f070007
-			public const int reloadTasksItem = 2131165191;
-			
-			// aapt resource value: 0x7f07001e
-			public const int remainingTimeTextView = 2131165214;
-			
-			// aapt resource value: 0x7f070017
-			public const int sendAllWorklogButton = 2131165207;
-			
-			// aapt resource value: 0x7f070016
-			public const int sendStatusImageButton = 2131165206;
-			
-			// aapt resource value: 0x7f07001f
-			public const int sendWorklogButton = 2131165215;
-			
-			// aapt resource value: 0x7f070011
-			public const int sentWorklogTextView = 2131165201;
-			
-			// aapt resource value: 0x7f070015
-			public const int separator = 2131165205;
-			
-			// aapt resource value: 0x7f070018
-			public const int taskLoggingStateButton = 2131165208;
-			
-			// aapt resource value: 0x7f07001c
-			public const int taskSubjectTextView = 2131165212;
-			
-			// aapt resource value: 0x7f070014
-			public const int tasksListView = 2131165204;
-			
-			// aapt resource value: 0x7f07001d
-			public const int tillDateTextView = 2131165213;
-			
-			// aapt resource value: 0x7f07000f
-			public const int timeInfoLayout = 2131165199;
-			
-			// aapt resource value: 0x7f070009
-			public const int timerChronometer = 2131165193;
-			
-			// aapt resource value: 0x7f070021
-			public const int unaccountedTextView = 2131165217;
+			public const int appNameTextView = 2131165187;
 			
 			// aapt resource value: 0x7f07001b
-			public const int unaccountedTimeLayout = 2131165211;
+			public const int contentLayout = 2131165211;
+			
+			// aapt resource value: 0x7f07000c
+			public const int controlPanelLayout = 2131165196;
+			
+			// aapt resource value: 0x7f07000d
+			public const int currentDateTextView = 2131165197;
+			
+			// aapt resource value: 0x7f070014
+			public const int footerLayout = 2131165204;
+			
+			// aapt resource value: 0x7f07001a
+			public const int fullContentLayout = 2131165210;
+			
+			// aapt resource value: 0x7f070009
+			public const int headerLayout = 2131165193;
+			
+			// aapt resource value: 0x7f070013
+			public const int listLayout = 2131165203;
+			
+			// aapt resource value: 0x7f070004
+			public const int loginEditText = 2131165188;
+			
+			// aapt resource value: 0x7f070002
+			public const int loginLayout = 2131165186;
+			
+			// aapt resource value: 0x7f070007
+			public const int logoutItem = 2131165191;
+			
+			// aapt resource value: 0x7f070001
+			public const int mainLayout = 2131165185;
+			
+			// aapt resource value: 0x7f07000b
+			public const int menuButton = 2131165195;
+			
+			// aapt resource value: 0x7f07000f
+			public const int nextDateButton = 2131165199;
+			
+			// aapt resource value: 0x7f070005
+			public const int passwordEditText = 2131165189;
+			
+			// aapt resource value: 0x7f070011
+			public const int plannedWorklogTextView = 2131165201;
+			
+			// aapt resource value: 0x7f07000e
+			public const int previousDateButton = 2131165198;
+			
+			// aapt resource value: 0x7f070008
+			public const int reloadTasksItem = 2131165192;
+			
+			// aapt resource value: 0x7f07001f
+			public const int remainingTimeTextView = 2131165215;
+			
+			// aapt resource value: 0x7f070018
+			public const int sendAllWorklogButton = 2131165208;
+			
+			// aapt resource value: 0x7f070017
+			public const int sendStatusImageButton = 2131165207;
 			
 			// aapt resource value: 0x7f070020
-			public const int unaccountedWorkTimeTextView = 2131165216;
+			public const int sendWorklogButton = 2131165216;
+			
+			// aapt resource value: 0x7f070012
+			public const int sentWorklogTextView = 2131165202;
+			
+			// aapt resource value: 0x7f070016
+			public const int separator = 2131165206;
+			
+			// aapt resource value: 0x7f070019
+			public const int taskLoggingStateButton = 2131165209;
+			
+			// aapt resource value: 0x7f07001d
+			public const int taskSubjectTextView = 2131165213;
+			
+			// aapt resource value: 0x7f070015
+			public const int tasksListView = 2131165205;
+			
+			// aapt resource value: 0x7f070000
+			public const int textItem = 2131165184;
+			
+			// aapt resource value: 0x7f07001e
+			public const int tillDateTextView = 2131165214;
+			
+			// aapt resource value: 0x7f070010
+			public const int timeInfoLayout = 2131165200;
+			
+			// aapt resource value: 0x7f07000a
+			public const int timerChronometer = 2131165194;
+			
+			// aapt resource value: 0x7f070022
+			public const int unaccountedTextView = 2131165218;
+			
+			// aapt resource value: 0x7f07001c
+			public const int unaccountedTimeLayout = 2131165212;
+			
+			// aapt resource value: 0x7f070021
+			public const int unaccountedWorkTimeTextView = 2131165217;
 			
 			static Id()
 			{
@@ -273,16 +243,19 @@ namespace ImpeltechTime.Droid
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Login = 2130903040;
+			public const int ListViewItem_tmp = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int main_menu = 2130903041;
+			public const int Login = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int TaskList = 2130903042;
+			public const int main_menu = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int TaskRowView = 2130903043;
+			public const int TaskList = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int TaskRowView = 2130903044;
 			
 			static Layout()
 			{

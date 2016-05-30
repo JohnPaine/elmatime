@@ -82,7 +82,7 @@ namespace ImpeltechTime.Droid.Adapters
                 _remainingTimeTextView.Visibility = ViewStates.Invisible;
 
             // TODO: replace seconds with hours and minutes
-            if (task.UnaccountedWorkTime?.TotalSeconds != null) {
+            if (null != task.UnaccountedWorkTime) {
                 _unaccountedLayout.Visibility = ViewStates.Visible;
                 _unaccountedWorkTimeTextView.Text = ((int) task.UnaccountedWorkTime?.TotalSeconds).ToString ();
             }

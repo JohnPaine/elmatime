@@ -54,19 +54,39 @@ namespace ImpeltechTime.Droid
             });
         }
 
-        private async Task<IEnumerable<IElmaTask>> GetTaskListAsync() {
+        private async Task<IEnumerable<IElmaTask>> GetTaskListForDateAsync() {
             return await Task.Run(() => _taskProvider.GetTasksForDate(_currentDate));
         }
 
+        private async Task<IEnumerable<IElmaTask>> GetTaskListAsync() {
+            return await Task.Run (() => _taskProvider.GetAllTasks ());
+        }
+
+        private void ShowAlertMessage (string message) {
+            new AlertDialog.Builder(this).SetTitle("Info")
+                                                .SetMessage(message)
+                                                .Show();
+        }
+
         private async Task CurrentDateChanged () {
-            var tasks = await GetTaskListAsync();
+            var tasks = await GetTaskListForDateAsync();
 
-            var elmaTasks = tasks as IList<IElmaTask> ?? tasks;
-            var adapter = new TaskAdapter(this, _currentDate, _taskProvider);
+            // TODO: debug!
+            var tmp = await GetTaskListAsync ();
+            var elmaTasks1 = tmp as IElmaTask[] ?? tmp.ToArray ();
+//            var enumerable = tmp as IElmaTask[] ?? elmaTasks1.ToArray ();
+            ShowAlertMessage ($"All tasks count - {elmaTasks1.Length}");
 
-            _tasksListView.Adapter = adapter;
+//            var elmaTasks = tasks as IList<IElmaTask> ?? tasks;
+//            var adapter = new TaskAdapter(this, _currentDate, _taskProvider);
+
+            // TODO: TMP!!!
+//            var data = tmp.ToArray ()
+            var data = (from task in elmaTasks1 select task.Subject).ToArray ();
+            _tasksListView.Adapter = new ArrayAdapter (this, Resource.Layout.ListViewItem_tmp, data);
+//            _tasksListView.Adapter = adapter;
             _currentDateTextView.Text = _currentDate.Date.ToShortDateString();
-            UpdateWorklogTimeDisplays(elmaTasks);
+//            UpdateWorklogTimeDisplays(elmaTasks);
         }
 
         private async Task GetInstances (string name, string pass) {

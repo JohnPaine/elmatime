@@ -88,9 +88,7 @@
     <Compile Include="Core\Internal\WCFServices\EntityService.cs" />
     <Compile Include="TaskListActivity.cs" />
     <Compile Include="Utility\ImageHelper.cs" />
-    <Compile Include="Utility\TaskTimer.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Utility\TaskTimer.cs" />
     <Compile Include="Utility\OrderedParametersOverride.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -120,33 +118,6 @@
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\pause.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\play_arrow_48px.svg" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\icon_pause.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\icon_play.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Checked_Checkbox_2_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Checked_Checkbox_2_96.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Checked_Checkbox_2_104.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Checked_Checkbox_52.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Checkmark_104.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\Cloud_Checked_48.png" />
   </ItemGroup>
   <ItemGroup>
@@ -156,16 +127,10 @@
     <AndroidResource Include="Resources\drawable\Cloud_Checked_96.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Collapse_Arrow_48_down.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\Collapse_Arrow_48_left.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Collapse_Arrow_48_right.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Collapse_Arrow_48_up.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Error_80.png" />
@@ -193,6 +158,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\colors.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ListViewItem_tmp.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

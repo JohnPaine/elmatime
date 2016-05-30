@@ -41,7 +41,6 @@ namespace ImpeltechTime.Droid.Core.Internal
 
         public IElmaUser LoginUser(string accName, string pass) {
             return AuthorizeUser (null, accName, pass);
-            //            return AuthorizeUser(null, accName, pass);
         }
 
         public IEnumerable<IElmaTask> GetTasksForUser(IElmaUser user) {
@@ -53,7 +52,7 @@ namespace ImpeltechTime.Droid.Core.Internal
 
             // TODO: can status change?
             // TODO: what statuses are possible??
-            TaskStatus[] statuses = { TaskStatus.NewOrder, TaskStatus.InProgress };
+            TaskStatus[] statuses = { TaskStatus.NewOrder, TaskStatus.InProgress, TaskStatus.Read };
 
             return GetTasks(user, statuses);
         }
@@ -62,11 +61,7 @@ namespace ImpeltechTime.Droid.Core.Internal
             if (null == user || null == task)
                 return false;
 
-            // TODO: change
-            var t = Task.Run (() => SendWorkLog (user, task));
-
-            t.Wait ();
-            return t.Result;
+            return SendWorkLog(user, task);
         }
 
         private static DateTime? GetDateTime(string dateString) {
