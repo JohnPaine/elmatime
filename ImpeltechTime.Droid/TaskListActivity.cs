@@ -72,21 +72,21 @@ namespace ImpeltechTime.Droid
             var tasks = await GetTaskListForDateAsync();
 
             // TODO: debug!
-            var tmp = await GetTaskListAsync ();
-            var elmaTasks1 = tmp as IElmaTask[] ?? tmp.ToArray ();
+//            var tmp = await GetTaskListAsync ();
+//            var elmaTasks1 = tmp as IElmaTask[] ?? tmp.ToArray ();
 //            var enumerable = tmp as IElmaTask[] ?? elmaTasks1.ToArray ();
-            ShowAlertMessage ($"All tasks count - {elmaTasks1.Length}");
+//            ShowAlertMessage ($"All tasks count - {elmaTasks1.Length}");
 
-//            var elmaTasks = tasks as IList<IElmaTask> ?? tasks;
-//            var adapter = new TaskAdapter(this, _currentDate, _taskProvider);
+            var elmaTasks = tasks as IList<IElmaTask> ?? tasks;
+            var adapter = new TaskAdapter(this, _currentDate, _taskProvider);
 
             // TODO: TMP!!!
 //            var data = tmp.ToArray ()
-            var data = (from task in elmaTasks1 select task.Subject).ToArray ();
-            _tasksListView.Adapter = new ArrayAdapter (this, Resource.Layout.ListViewItem_tmp, data);
-//            _tasksListView.Adapter = adapter;
+//            var data = (from task in elmaTasks1 select task.Subject).ToArray ();
+//            _tasksListView.Adapter = new ArrayAdapter (this, Resource.Layout.ListViewItem_tmp, data);
+            _tasksListView.Adapter = adapter;
             _currentDateTextView.Text = _currentDate.Date.ToShortDateString();
-//            UpdateWorklogTimeDisplays(elmaTasks);
+            UpdateWorklogTimeDisplays(elmaTasks);
         }
 
         private async Task GetInstances (string name, string pass) {
