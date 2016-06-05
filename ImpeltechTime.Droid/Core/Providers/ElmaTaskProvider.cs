@@ -38,7 +38,7 @@ namespace ImpeltechTime.Droid.Core.Providers
 
         public IEnumerable<IElmaTask> GetTasksForDate (DateTime dateTime) {
             return (from task in GetAllTasks ()
-                    where task.StartDateTime < dateTime && task.EndDateTime > dateTime
+                    where task.StartDateTime <= dateTime && task.EndDateTime >= dateTime
                     select task).ToList ();
         }
 

@@ -34,7 +34,8 @@ namespace ImpeltechTime.Droid.Adapters
 
         public override int Count => _tasks.Count;
 
-        public override IElmaTask this [int position] => _tasks[position];
+//        public override IElmaTask this [int position] => _tasks[position];
+        public override IElmaTask this [int position] => null;
 
         public override long GetItemId (int position) {
             return position;
@@ -68,7 +69,7 @@ namespace ImpeltechTime.Droid.Adapters
 
             _taskSubjectTextView.Text = task.Subject;
             _tillDateTextView.Text = $"Till {task.EndDateTime}";
-
+            
             double? hours = null;
             if (task.PlannedWorkTime != null)
                 hours = task.FactWorkTime == null
@@ -80,7 +81,7 @@ namespace ImpeltechTime.Droid.Adapters
             }
             else
                 _remainingTimeTextView.Visibility = ViewStates.Invisible;
-
+            
             // TODO: replace seconds with hours and minutes
             if (null != task.UnaccountedWorkTime) {
                 _unaccountedLayout.Visibility = ViewStates.Visible;
@@ -89,7 +90,7 @@ namespace ImpeltechTime.Droid.Adapters
             else
                 _unaccountedLayout.Visibility = ViewStates.Invisible;
             _taskLoggingStateButton.SetBackgroundResource (image);
-
+            
             if (init) {
                 _taskLoggingStateButton.Click += delegate {
                     if (task.LoggingState == TaskLoggingState.NotLogging || task.LoggingState == TaskLoggingState.Paused) {
@@ -101,7 +102,7 @@ namespace ImpeltechTime.Droid.Adapters
                         _taskLoggingStateButton.SetBackgroundResource (Android.Resource.Drawable.IcMediaPlay);
                     }
                 };
-
+            
                 _sendWorklogButton.Click += delegate {
                     _taskProvider.SendTaskWorklog (task);
                 };
