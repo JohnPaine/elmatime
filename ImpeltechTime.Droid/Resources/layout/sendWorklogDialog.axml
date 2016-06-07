@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
               android:layout_height="wrap_content"
-              android:background="#ff9800"
+              android:background="@drawable/login_screen_gradient_shape"
               android:orientation="vertical" >
 
     <TextView
@@ -13,28 +13,64 @@
             android:layout_margin="10dp"
             android:text="Sending worklog"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
-            android:textStyle="bold" >
+            android:textSize="20sp"
+            android:textStyle="bold" style="@android:style/TextAppearance.Material.Widget.Button">
     </TextView>
 
     <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="300dp" android:id="@+id/dialogSettingsLayout">
+            android:layout_height="wrap_content" android:id="@+id/dialogSettingsLayout"
+            android:background="@android:drawable/dialog_holo_light_frame">
         <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Spent time"
-                android:id="@+id/txt_dia2" android:textSize="15sp" android:gravity="center"
-                android:layout_centerHorizontal="true"/>
+                android:id="@+id/txt_dia2" android:textSize="17sp" android:gravity="center"
+                android:layout_centerHorizontal="true" android:layout_alignParentStart="false"
+                android:layout_alignParentEnd="false" android:textColor="#ffa726"
+                style="@android:style/TextAppearance.Material.Widget.Button"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="time"
+                android:ems="10"
+                android:id="@+id/spentTimeEditText" android:layout_below="@+id/txt_dia2" android:layout_centerHorizontal="true"
+                android:text="5:25" android:gravity="center" android:textColor="#ef6c00"
+                android:textSize="22sp" android:background="@android:drawable/editbox_dropdown_light_frame" android:autoText="false"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceMedium" android:text="Start date"
+                  android:id="@+id/txt_dia3" android:textSize="17sp" android:gravity="center"
+                  android:layout_below="@+id/spentTimeEditText" android:layout_centerHorizontal="true"
+                  android:layout_marginTop="20dp" android:textColor="#ffa726"
+                  style="@android:style/TextAppearance.Material.Widget.Button"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:ems="10"
+                android:id="@+id/startDateEditText" android:layout_below="@+id/txt_dia3" android:layout_centerHorizontal="true"
+                android:gravity="center" android:text="06.07.2016" android:textColor="#ef6c00"
+                android:textSize="22sp" android:background="@android:drawable/editbox_dropdown_light_frame"/>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:textAppearance="?android:attr/textAppearanceMedium" android:text="Comment"
+                  android:id="@+id/txt_dia4" android:textSize="17sp" android:gravity="center"
+                  android:layout_below="@+id/startDateEditText" android:layout_centerHorizontal="true"
+                  android:layout_marginTop="20dp" android:textColor="#ffa726"
+                  style="@android:style/TextAppearance.Material.Widget.Button"/>
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/commentEditText" android:layout_below="@+id/txt_dia4" android:text="Worklog comment"
+                android:gravity="center" android:textColor="#ef6c00" android:textSize="22sp"/>
     </RelativeLayout>
     <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="#ff9800"
+            android:background="@android:color/transparent"
             android:orientation="horizontal" android:id="@+id/dialogButtonsLayout" android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="15dp">
 
         <Button
                 android:id="@+id/dialogCancelSendingButton"
@@ -44,18 +80,18 @@
                 android:clickable="true"
                 android:text="Cancel"
                 android:textColor="#f57c00"
-                android:textStyle="bold" />
+                android:textStyle="bold" android:textSize="17sp"/>
 
         <Button
                 android:id="@+id/dialogSendWorklogButton"
                 android:layout_width="100dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="30dp"
                 android:background="@android:color/white"
                 android:clickable="true"
                 android:text="Send"
                 android:textColor="#f57c00"
-                android:textStyle="bold" />
+                android:textStyle="bold" android:textSize="17sp"/>
     </LinearLayout>
 
 </LinearLayout>
