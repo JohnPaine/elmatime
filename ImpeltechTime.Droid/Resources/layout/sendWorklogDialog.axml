@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:background="#ff9800"
+              android:orientation="vertical" >
+
+    <TextView
+            android:id="@+id/txt_dia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="Sending worklog"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" >
+    </TextView>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp" android:id="@+id/dialogSettingsLayout">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Spent time"
+                android:id="@+id/txt_dia2" android:textSize="15sp" android:gravity="center"
+                android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+    <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#ff9800"
+            android:orientation="horizontal" android:id="@+id/dialogButtonsLayout" android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp">
+
+        <Button
+                android:id="@+id/dialogCancelSendingButton"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:background="@android:color/white"
+                android:clickable="true"
+                android:text="Cancel"
+                android:textColor="#f57c00"
+                android:textStyle="bold" />
+
+        <Button
+                android:id="@+id/dialogSendWorklogButton"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="5dp"
+                android:background="@android:color/white"
+                android:clickable="true"
+                android:text="Send"
+                android:textColor="#f57c00"
+                android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

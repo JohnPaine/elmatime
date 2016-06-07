@@ -144,28 +144,19 @@
         android:layout_alignParentStart="false"
         android:layout_above="@+id/footerLayout"
         android:elevation="3dp">
-        <ScrollView
+        <ListView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/scrollView"
-            android:nestedScrollingEnabled="true"
-            android:fillViewport="true">
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tasksListView"
-                android:background="#ffffff"
-                android:elevation="10dp"
-                android:fadeScrollbars="false"
-                android:layout_marginTop="5dp"
-                android:fastScrollAlwaysVisible="false"
-                android:fastScrollEnabled="false"
-                android:layout_marginBottom="7dp" />
-        </ScrollView>
+            android:layout_height="wrap_content"
+            android:id="@+id/tasksListView"
+            android:background="#ffffff"
+            android:elevation="10dp"
+            android:fadeScrollbars="false"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="7dp" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="false"
         android:layout_alignParentStart="false"
         android:layout_alignParentBottom="true"

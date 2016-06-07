@@ -107,6 +107,9 @@
     <AndroidResource Include="Resources\layout\listItem_tmp2.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\sendWorklogDialog.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Login.axml" />
