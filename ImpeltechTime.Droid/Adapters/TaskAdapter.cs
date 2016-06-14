@@ -6,6 +6,7 @@ using Android.Views;
 using Android.Widget;
 using ImpeltechTime.Droid.Core.Model;
 using ImpeltechTime.Droid.Core.Model.Providers;
+using ImpeltechTime.Droid.Fragments;
 
 namespace ImpeltechTime.Droid.Adapters
 {
@@ -104,7 +105,9 @@ namespace ImpeltechTime.Droid.Adapters
                 };
             
                 _sendWorklogButton.Click += delegate {
-                    _taskProvider.SendTaskWorklog (task);
+                    var transaction = _context.FragmentManager.BeginTransaction ();
+                    var dialog = new SendWorklogDialogFragment (task, _taskProvider);
+                    dialog.Show (transaction, "");
                 };
             }
 

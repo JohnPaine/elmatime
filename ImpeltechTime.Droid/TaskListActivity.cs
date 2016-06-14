@@ -20,6 +20,7 @@ using Timer = System.Timers.Timer;
 
 namespace ImpeltechTime.Droid
 {
+//    [Activity (Label = "TaskListActivity", Theme = "@android:style/Theme.NoTitleBar")]
     [Activity (Label = "TaskListActivity", Theme = "@style/CustomActionBarTheme")]
     public class TaskListActivity : Activity
     {
@@ -70,6 +71,8 @@ namespace ImpeltechTime.Droid
         }
 
         private async Task CurrentDateChanged () {
+            // TODO: fix bug with null pointer at screen rotation!!!!!
+
             var showProgress = _taskProvider.UpdateNeeded;
             var progress = new ProgressDialog (this);
             progress.SetTitle ("Loading");
@@ -116,28 +119,31 @@ namespace ImpeltechTime.Droid
 
             SetContentView (Resource.Layout.TaskList);
 
+            var init = savedInstanceState == null;
+
             // TODO: show some "loading sign" while tasks are being updated
 
             Log.Info ("TaskListActivity", "Starting");
             Log.Info ("DEBUG TaskListActivity OnCreate", $"ThreadID - {Thread.CurrentThread.ManagedThreadId}");
 
-            var creds = Intent.GetStringArrayExtra ("cred");
-            if (null == creds || creds.Length != 2) {
-                Log.Error ("TaskListActivity", "Error getting credentials! Finishing...");
-                Finish ();
-                return;
+            if (init) {
+                var creds = Intent.GetStringArrayExtra ("cred");
+                if (null == creds || creds.Length != 2) {
+                    Log.Error ("TaskListActivity", "Error getting credentials! Finishing...");
+                    Finish ();
+                    return;
+                }
+                Log.Info ("TaskListActivity", $"c={creds[0]}, creds[1]={creds[1]}");
+                SetupViews ();
+
+                await GetInstances (creds[0], creds[1]);
+
+                _currentDate = DateTime.Now;
             }
 
-            Log.Info ("TaskListActivity", $"c={creds[0]}, creds[1]={creds[1]}");
+            await CurrentDateChanged();
 
-            SetupViews ();
-
-            await GetInstances (creds[0], creds[1]);
-
-            _currentDate = DateTime.Now;
-            await CurrentDateChanged ();
-
-            Log.Info ("TaskListActivity", "All OK");
+            Log.Info("TaskListActivity", "All OK");
         }
 
         private void SetupViews () {
@@ -145,15 +151,6 @@ namespace ImpeltechTime.Droid
             SetupTimers ();
             SetupMenu ();
             SetupButtons ();
-
-            _previousDateButton.Click += async delegate {
-                _currentDate = _currentDate.AddDays (-1);
-                await CurrentDateChanged();
-            };
-            _nextDateButton.Click += async delegate {
-                _currentDate = _currentDate.AddDays (1);
-                await CurrentDateChanged();
-            };
         }
 
         private void FindViews () {
@@ -190,6 +187,14 @@ namespace ImpeltechTime.Droid
                 // TODO: add some sign for user about sending and change @sendStatusImageButton image on success or fail
                 foreach (var task in tasks)
                     _taskProvider.SendTaskWorklog (task);
+            };
+            _previousDateButton.Click += async delegate {
+                _currentDate = _currentDate.AddDays(-1);
+                await CurrentDateChanged();
+            };
+            _nextDateButton.Click += async delegate {
+                _currentDate = _currentDate.AddDays(1);
+                await CurrentDateChanged();
             };
         }
 

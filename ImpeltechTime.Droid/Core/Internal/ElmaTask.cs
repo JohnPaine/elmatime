@@ -62,6 +62,20 @@ namespace ImpeltechTime.Droid.Core.Internal
             }
         }
 
-        public TimeSpan? UnaccountedWorkTime { get; set; }
+        private TimeSpan? _unaccountedWorkTime;
+
+        public TimeSpan? UnaccountedWorkTime {
+            get {
+                return _unaccountedWorkTime;
+            }
+            set {
+                if (value == _unaccountedWorkTime)
+                    return;
+                _unaccountedWorkTime = value;
+                TaskChangedEvent?.Invoke (this, EventArgs.Empty);
+            }
+        }
+
+        public event EventHandler TaskChangedEvent;
     }
 }

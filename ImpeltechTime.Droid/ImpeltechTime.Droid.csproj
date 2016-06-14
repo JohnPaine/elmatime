@@ -75,6 +75,8 @@
     <Compile Include="Core\Model\Providers\IElmaTaskProvider.cs" />
     <Compile Include="Core\Model\IElmaWCFService.cs" />
     <Compile Include="Core\Internal\TaskStatusHelper.cs" />
+    <Compile Include="Fragments\EditSpentTimeDialogFragment.cs" />
+    <Compile Include="Fragments\SendWorklogDialogFragment.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="Core\Model\IElmaEntity.cs" />
     <Compile Include="Core\Model\IElmaTask.cs" />
@@ -110,6 +112,8 @@
     <AndroidResource Include="Resources\layout\sendWorklogDialog.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\edit_spent_time.axml" />
+    <AndroidResource Include="Resources\layout\edit_start_date.axml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Login.axml" />

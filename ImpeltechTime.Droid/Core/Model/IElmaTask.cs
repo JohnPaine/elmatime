@@ -39,5 +39,7 @@ namespace ImpeltechTime.Droid.Core.Model
         TimeSpan? PlannedWorkTime { get; }
         TimeSpan? FactWorkTime { get; }
         TimeSpan? UnaccountedWorkTime { get; set; }
+
+        event EventHandler TaskChangedEvent;
     }
 }

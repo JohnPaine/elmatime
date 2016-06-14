@@ -80,6 +80,7 @@ namespace ImpeltechTime.Droid.Core.Internal
             try {
                 TimeSpan parsed;
                 int minutes;
+                // TODO: check if there are minutes or seconds used!
                 if (int.TryParse (dateString, out minutes))
                     return new TimeSpan (0, 0, minutes, 0);
 

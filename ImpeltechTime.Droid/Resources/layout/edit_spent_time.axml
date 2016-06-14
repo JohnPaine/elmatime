@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/login_screen_gradient_shape"
+              android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/txt_dia_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="Edit spent time"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" style="@android:style/TextAppearance.Material.Widget.Button"
+            android:gravity="center"/>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/dialog_2_SettingsLayout"
+            android:background="@android:drawable/dialog_holo_light_frame" android:gravity="center">
+        <NumberPicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spentHours_numberPicker" android:layout_alignParentStart="true"/>
+        <NumberPicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spentMinutes_numberPicker" android:layout_toRightOf="@+id/spentHours_numberPicker"
+                android:layout_marginLeft="20dp"/>
+        <NumberPicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spentSeconds_numberPicker" android:layout_toRightOf="@+id/spentMinutes_numberPicker"
+                android:layout_marginLeft="20dp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:orientation="horizontal" android:id="@+id/dialog_2_ButtonsLayout" android:layout_marginBottom="10dp"
+            android:layout_marginTop="15dp" android:gravity="center">
+
+        <Button
+                android:id="@+id/dialog_2_CancelButton"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:background="@android:color/white"
+                android:clickable="true"
+                android:text="Cancel"
+                android:textColor="#f57c00"
+                android:textStyle="bold" android:textSize="17sp"/>
+
+        <Button
+                android:id="@+id/dialog_2_OKButton"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@android:color/white"
+                android:clickable="true"
+                android:text="OK"
+                android:textColor="#f57c00"
+                android:textStyle="bold" android:textSize="17sp"/>
+    </LinearLayout>
+</LinearLayout>
